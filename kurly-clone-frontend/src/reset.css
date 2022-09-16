@@ -1,0 +1,135 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")}@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")}@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")}@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")}
+html {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+body {
+    font-size: 14px;
+    color: #333;
+
+}
+
+header {
+    position: relative;
+    width: 1050px;
+    height: 100px;
+    margin: 0px auto;
+    letter-spacing: -0.3px;
+}
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+    list-style-type: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input {
+	all: unset;
+}
+
+input:focus {
+    border: 1px solid #333;
+}
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    all: unset;
+    box-sizing: border-box;
+}
+
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, :after, :before, legend, td, th {
+    padding: 0;
+}
+
+html {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+body {
+    font-size: 14px;
+    color: #333;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+b, optgroup, strong {
+    font-weight: 700;
+}
+
+html, button, input, select, textarea {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+button {
+    border-radius: 0;
+}
+
+body, button, input, select, textarea {
+    font-size: 14px;
+    color: #333;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}

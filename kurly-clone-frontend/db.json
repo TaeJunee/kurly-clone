@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "email": "ddd@mail.com",
+      "password": "$2a$10$uwkm7yQCqWfr8iC8SFvWouXSTQXZu4iCYRNusoBEAEq9E4SNhNuq6",
+      "memberId": "ddddddd",
+      "name": "dddddd",
+      "mobileNumber": "22222",
+      "address": "",
+      "extraAddress": "",
+      "gender": "",
+      "birth": {
+        "year": "",
+        "month": "",
+        "day": ""
+      },
+      "id": 1
+    },
+    {
+      "email": "dddd@mail.com",
+      "password": "$2a$10$Zad5g5NrPKXOHjseUH/i.udUzzWEGZJ4zRsuY.8i7Ye3mRuNKF/iu",
+      "memberId": "ddddddd",
+      "name": "dddddd",
+      "mobileNumber": "22222",
+      "address": "서울 서대문구 연세로11길 14 (창천동)",
+      "extraAddress": "405호",
+      "gender": "MALE",
+      "birth": {
+        "year": "1111",
+        "month": "11",
+        "day": "11"
+      },
+      "id": 2
+    },
+    {
+      "email": "ethcom@naver.com",
+      "password": "$2a$10$Na.jrL6soPJI1Wy/j7rFZ.DqKhfL9ZF0CRRwrDmOSAJ64pXox8uEC",
+      "memberId": "dndndn",
+      "name": "김글루",
+      "mobileNumber": "01030695871",
+      "address": "부산 남구 우암양달로 2-5 (우암동)",
+      "extraAddress": "dddd",
+      "gender": "FEMALE",
+      "birth": {
+        "year": "1111",
+        "month": "33",
+        "day": "44"
+      },
+      "id": 3
+    },
+    {
+      "email": "etdhcom@naver.com",
+      "password": "$2a$10$x2h3.Sr3UZG.no1ThV8Mt.JpyjtUfOYi16wp8bayk9YMPrfLNVCm.",
+      "memberId": "dndndn",
+      "name": "김글루",
+      "mobileNumber": "01030695871",
+      "address": "부산 남구 우암양달로 2-5 (우암동)",
+      "extraAddress": "dddd",
+      "gender": "FEMALE",
+      "birth": {
+        "year": "1111",
+        "month": "33",
+        "day": "44"
+      },
+      "id": 4
+    },
+    {
+      "email": "befreeb@naver.com",
+      "password": "$2a$10$.2ZWmaaCUpao4uZCyZsVUuzrJ2ODtur3rT4YchArDGj7D6Xp.fBJS",
+      "memberId": "",
+      "name": "우태준",
+      "mobileNumber": "01030695871",
+      "address": "서울 서대문구 연세로11길 14 (창천동)",
+      "extraAddress": "405호",
+      "gender": "MALE",
+      "birth": {
+        "year": "1995",
+        "month": "02",
+        "day": "11"
+      },
+      "id": 5
+    }
+  ]
+}

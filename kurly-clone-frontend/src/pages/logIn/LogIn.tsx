@@ -21,7 +21,7 @@ export default function LogIn({ memberId, password }: propsType) {
     try {
       await axios
         .post(
-          'http://localhost:5000/api/login',
+          'http://localhost:5000/api/auth/login',
           {
             memberId: memberId,
             password: password,

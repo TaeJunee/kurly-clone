@@ -14,7 +14,7 @@ const SignUp = ({ memberId, password, name, email, phone, address, extraAddress,
       try {
         await axios
           .post(
-            'http://localhost:5000/api/signup',
+            'http://localhost:5000/api/auth/signup',
             {
               memberId: memberId,
               password: password,

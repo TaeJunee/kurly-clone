@@ -1,8 +1,32 @@
 import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux';
 import Alert from './Alert'
+import { startCount } from '../../redux/features/timerSlice'
 import { propsType } from './propsType'
+import { isTimeover } from '../../redux/features/timerSlice'
+import axios from 'axios';
 
 export default function Phone({ phone, phoneErr, phoneErrMessage, onChangePhone, isActive }: propsType) {
+  const isTimeout = useSelector(isTimeover);
+  const dispatch = useDispatch();
+
+  const onClickHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      await axios
+        .post('http://localhost:5000/api/auth/smscheck',
+        {
+          tel: phone,
+        })
+        .then(res => {
+          console.log(res);
+        })
+    } catch (error) {
+        console.log(error);
+    } finally {
+        dispatch(startCount());
+    }
+  }
 
   return (
     <InputWrapper>
@@ -18,12 +42,13 @@ export default function Phone({ phone, phoneErr, phoneErrMessage, onChangePhone,
           placeholder='휴대전화 번호를 입력해주세요'
           maxLength={11}
           value={phone}
+          readOnly={!isTimeout}
           onChange={onChangePhone} />
         </InputWrap>
         {phoneErr && <Alert message={phoneErrMessage as string}/>}
       </MiddleWrapper>
       <RightWrapper>
-      <Button type="button" disabled={!isActive}>
+      <Button type="button" disabled={!isActive || !isTimeout} onClick={ onClickHandler }>
         <span>인증번호 받기</span>
       </Button>
       </RightWrapper>

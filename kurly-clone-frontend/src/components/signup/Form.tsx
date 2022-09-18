@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useSelector } from 'react-redux';
 import Address from './Address'
 import Email from './Email'
 import Id from './Id'
@@ -8,6 +9,8 @@ import Phone from './Phone'
 import Gender from './Gender'
 import Birth from './Birth'
 import { propsType } from './propsType'
+import PhoneCheck from './PhoneCheck'
+import { isTimeover } from '../../redux/features/timerSlice';
 
 export default function Form({ 
   memberId,
@@ -47,6 +50,8 @@ export default function Form({
   onChangeBirthMonth,
   onChangeBirthDay,
 }: propsType) {
+
+  const isTimeout = useSelector(isTimeover);
   return (
     <InputContainer>
       <Id memberId={memberId} memberIdErr={memberIdErr} memberIdErrMessage={memberIdErrMessage} onChangeMemberId={onChangeMemberId} />
@@ -54,6 +59,7 @@ export default function Form({
       <Name name={name} nameErr={nameErr} nameErrMessage={nameErrMessage} onChangeName={onChangeName} />
       <Email email={email} emailErr={emailErr} emailErrMessage={emailErrMessage} onChangeEmail={onChangeEmail} />
       <Phone phone={phone} phoneErr={phoneErr} phoneErrMessage={phoneErrMessage} onChangePhone={onChangePhone} isActive={isActive} />
+      { !isTimeout && <PhoneCheck phone={phone}/> }
       <Address address={address} extraAddress={extraAddress} isComplete={isComplete} handleClick={handleClick} onChangeExtraAddress={onChangeExtraAddress} />
       <Gender checked={checked} onChangeGender={onChangeGender}/>
       <Birth birth={birth} onChangeBirthYear={onChangeBirthYear} onChangeBirthMonth={onChangeBirthMonth} onChangeBirthDay={onChangeBirthDay} />

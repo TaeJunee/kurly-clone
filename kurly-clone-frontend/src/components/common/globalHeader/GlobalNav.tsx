@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import Category from '../category/Category'
+import Category from './category/Category'
 import { reset } from '../../../redux/features/categorySlice'
 import { useDispatch } from 'react-redux';
 

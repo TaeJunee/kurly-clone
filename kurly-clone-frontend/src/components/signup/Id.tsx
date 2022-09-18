@@ -10,12 +10,11 @@ export default function Id({ memberId, memberIdErr, memberIdErrMessage, onChange
 
   const idCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(memberIdErr);
     if (memberId && !memberIdErr) {
       try {
         await axios
           .post(
-            'http://localhost:5000/api/duplicationcheckid',
+            'http://localhost:5000/api/auth/duplicationcheckid',
             {
               memberId
             }
@@ -24,7 +23,7 @@ export default function Id({ memberId, memberIdErr, memberIdErrMessage, onChange
             const message = res.data.message;
             const status = res.data.status;
             window.alert(message);
-            if (status === 0) {
+            if (status === 1) {
               setIdIsOk(true);
             } else if (status === 0) {
               setIdIsOk(false);

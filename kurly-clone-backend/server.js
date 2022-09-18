@@ -7,9 +7,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-const AuthRoute = require('./routes/auth');
-const DuplicationCheckRoute = require('./routes/duplicationCheck')
-
+const AuthRoute = require('./routes/auth/auth');
 
 
 mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -41,7 +39,6 @@ app.listen(PORT, () => {
 // })
 
 app.use('/api', AuthRoute);
-app.use('/api', DuplicationCheckRoute);
 
 
 

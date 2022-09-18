@@ -18,7 +18,7 @@ export default function Email({ email, emailErr, emailErrMessage, onChangeEmail 
       try {
         await axios
           .post(
-            'http://localhost:5000/api/duplicationcheckemail',
+            'http://localhost:5000/api/auth/duplicationcheckemail',
             {
               email
             }

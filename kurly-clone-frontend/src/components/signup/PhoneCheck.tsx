@@ -1,55 +1,67 @@
+import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux';
-import Alert from './Alert'
-import { startCount } from '../../redux/features/timerSlice'
-import { propsType } from './propsType'
-import { isTimeover } from '../../redux/features/timerSlice'
+import Timer from './Timer';
+import { isTimeover, timeout } from '../../redux/features/timerSlice';
 import axios from 'axios';
+import { propsType } from './propsType';
+import { useDispatch } from 'react-redux';
 
-export default function Phone({ phone, phoneErr, phoneErrMessage, onChangePhone, isActive }: propsType) {
+export default function PhoneCheck({ phone }: propsType) {
   const isTimeout = useSelector(isTimeover);
   const dispatch = useDispatch();
+  const [code, setCode] = useState<string>('');
+  const [isActive, setIsActive] = useState<boolean>(false);
 
-  const onClickHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const numRegEx = /[0-9]$/g;
+    if (numRegEx.test(e.target.value)) {
+      if (e.target.value) {
+        setIsActive(true);
+      } else { setIsActive(false); }
+    } else {
+      e.target.value = e.target.value.replace(/[^0-9]/g,'');
+    }
+    setCode(e.target.value);
+  }
+
+  const sendCode = async (e:  React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       await axios
-        .post('http://localhost:8080/api/auth/sms/send',
+      .post('http://localhost:8080/api/auth/authenticate',
         {
-          to: phone,
+          phone: phone,
+          code,
         })
-        .then(res => {
-          console.log(res);
-        })
-    } catch (error) {
-        console.log(error);
-    } finally {
-        dispatch(startCount());
+      .then((res) => {
+        window.alert(res.data.payload);
+    })
+  } catch (error) {
+      window.alert('인증번호가 틀립니다.')
     }
   }
 
   return (
     <InputWrapper>
       <LeftWrapper>
-        <LabelText>휴대폰 <Star>*</Star></LabelText>
       </LeftWrapper>
       <MiddleWrapper>
         <InputWrap>
         <InputField
-          id='mobileNumber'
+          id='authCode'
           name='mobileNumber'
-          type='tel'
-          placeholder='휴대전화 번호를 입력해주세요'
-          maxLength={11}
-          value={phone}
-          readOnly={!isTimeout}
-          onChange={onChangePhone} />
-        </InputWrap>
-        {phoneErr && <Alert message={phoneErrMessage as string}/>}
+          type='text'
+          required
+          maxLength={6}
+          value={code}
+          onChange={onChangeCode} />
+        <Timer />
+        </InputWrap>   
       </MiddleWrapper>
       <RightWrapper>
-      <Button type="button" disabled={!isActive || !isTimeout} onClick={ onClickHandler }>
-        <span>인증번호 받기</span>
+      <Button type="button" disabled={ !isActive && !isTimeout } onClick={sendCode}>
+        <span>인증번호 확인</span>
       </Button>
       </RightWrapper>
     </InputWrapper>
@@ -75,16 +87,6 @@ const RightWrapper = styled.div`
   width: 120px;
   margin-left: 8px;
   `
-
-  const LabelText = styled.label`
-  font-weight: 500;
-  color: rgb(51, 51, 51);
-  line-height: 20px;
-`
-
-  const Star = styled.span`
-  color: rgb(238, 106, 123);
-`
 
 const InputWrap = styled.div`
   position: relative;

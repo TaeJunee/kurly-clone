@@ -6,7 +6,7 @@ import { propsType } from './propsType'
 import { useState } from 'react'
 
 export default function Id({ memberId, memberIdErr, memberIdErrMessage, onChangeMemberId }: propsType) {
-  const [idIsOk, setIdIsOk] = useState<boolean>(false);
+  const [canUseId, setCanUseId] = useState<boolean>(false);
 
   const idCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -14,23 +14,17 @@ export default function Id({ memberId, memberIdErr, memberIdErrMessage, onChange
       try {
         await axios
           .post(
-            'http://localhost:5000/api/auth/duplicationcheckid',
+            'http://localhost:8080/api/auth/idduplicationcheck',
             {
               memberId
             }
           )
           .then((res) => {
-            const message = res.data.message;
-            const status = res.data.status;
-            window.alert(message);
-            if (status === 1) {
-              setIdIsOk(true);
-            } else if (status === 0) {
-              setIdIsOk(false);
-            }
+            console.log(res);
+            window.alert(res.data.payload);
           })
       } catch (error) {
-        console.log(error)
+        window.alert("사용 불가능한 아이디입니다.")
       }
     } else {alert('6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합');}
   }

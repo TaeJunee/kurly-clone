@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
-import { Main, LogIn, SignUp } from './pages';
+import { Main, LogIn, SignUp } from './pages'
+import GoodsPage from './pages/goods/[id]'
 import './reset.css'
 
 
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/goods/:id" element={<GoodsPage />} />
       </Routes>
     </div>
   );

@@ -21,13 +21,14 @@ export default function LogIn({ memberId, password }: propsType) {
     try {
       await axios
         .post(
-          'http://localhost:5000/api/auth/login',
+          'http://localhost:8080/api/auth/signin',
           {
             memberId: memberId,
             password: password,
           }
         )
         .then((res) => {
+          console.log(res);
           if (res.status === 200) {
             if (res.data.status === 1) {
               dispatch((login(res.data)));

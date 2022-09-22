@@ -14,9 +14,9 @@ export default function Phone({ phone, phoneErr, phoneErrMessage, onChangePhone,
     e.preventDefault();
     try {
       await axios
-        .post('http://localhost:5000/api/auth/smscheck',
+        .post('http://localhost:8080/api/auth/sms/send',
         {
-          tel: phone,
+          to: phone,
         })
         .then(res => {
           console.log(res);

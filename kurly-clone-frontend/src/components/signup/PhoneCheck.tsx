@@ -14,7 +14,6 @@ export default function PhoneCheck({ phone }: propsType) {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const onChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(isTimeout)
     const numRegEx = /[0-9]$/g;
     if (numRegEx.test(e.target.value)) {
       if (e.target.value) {
@@ -28,23 +27,18 @@ export default function PhoneCheck({ phone }: propsType) {
 
   const sendCode = async (e:  React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try{
+    try {
       await axios
-      .post('http://localhost:5000/api/auth/smscheck/isvalidate',
+      .post('http://localhost:8080/api/auth/authenticate',
         {
-          tel: phone,
+          phone: phone,
           code,
         })
-      .then(res => {
-        const errCode = res.data.errorCode;
-        const message = res.data.message;
-        if (errCode === 1) {
-          dispatch(timeout());
-        } 
-        window.alert(message);
-      })
-    } catch (error) {
-      console.log(error)
+      .then((res) => {
+        window.alert(res.data.payload);
+    })
+  } catch (error) {
+      window.alert('인증번호가 틀립니다.')
     }
   }
 

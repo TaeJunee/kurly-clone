@@ -5,11 +5,10 @@ import Alert from './Alert'
 import { propsType } from './propsType'
 
 export default function Email({ email, emailErr, emailErrMessage, onChangeEmail }: propsType) {
-  const [emailIsOk, setEmailIsOk] = useState<boolean>(false);
+  const [canUseEmail, setCanUseEmail] = useState<boolean>(false);
 
   const emailCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(emailErr);
     if (!email ) {
       window.alert('이메일을 입력해주세요.');
     } else if (emailErr) {
@@ -18,23 +17,17 @@ export default function Email({ email, emailErr, emailErrMessage, onChangeEmail 
       try {
         await axios
           .post(
-            'http://localhost:5000/api/auth/duplicationcheckemail',
+            'http://localhost:8080/api/auth/emailduplicationcheck',
             {
               email
             }
           )
           .then((res) => {
-            const message = res.data.message;
-            const status = res.data.status;
-            window.alert(message);
-            if (status === 0) {
-              setEmailIsOk(true);
-            } else if (status === 0) {
-              setEmailIsOk(false);
-            }
+            window.alert(res.data.payload);
           })
       } catch (error) {
-        console.log(error)
+        console.log(error);
+        window.alert("사용 불가능한 이메일입니다.")
       }
     }
   }

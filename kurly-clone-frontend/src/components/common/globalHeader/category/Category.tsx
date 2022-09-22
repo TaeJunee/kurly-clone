@@ -16,6 +16,10 @@ export default function Category() {
    
   }
 
+  const handleMouseClick = () => {
+    
+  } 
+
   return (
     <CategoryWrap>
       <CategoryInnerWrap isHovering={isHovering} >
@@ -23,7 +27,7 @@ export default function Category() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}>
           {categoryList.map((item) => {
-            return <CategoryItems key={item.id} items={item} isWide={isHovering} />
+            return <CategoryItems key={item.id} items={item} isWide={isHovering} onClick= />
           })}
           <EmptySpace isHovering={isHovering}/>
         </CategoryList>

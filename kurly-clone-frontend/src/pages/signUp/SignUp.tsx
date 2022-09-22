@@ -14,29 +14,29 @@ const SignUp = ({ memberId, password, name, email, phone, address, extraAddress,
       try {
         await axios
           .post(
-            'http://localhost:5000/api/auth/signup',
+            'http://localhost:8080/api/auth/signup',
             {
               memberId: memberId,
               password: password,
               name: name,
               email: email,
               phone: phone,
-              address: address,
-              extraAddress: extraAddress,
+              address1: address,
+              address2: extraAddress,
               gender: checked,
-              birth: birth,
-            }
+              birthYear: birth?.year,
+              birthMonth: birth?.month,
+              birthDay: birth?.day,
+            },
           )
           .then((res) => {
-            console.log(res);
-            const message = res.data.message;
-            const status = res.data.status;
-            window.alert(message);
-            if (status === 1) {
-              navigate('../login');
-      }})
+            window.alert(res.data.payload);
+            navigate('/login');
+
+    }
+    )
       } catch (error) {
-        console.log(error)
+        window.alert('입력한 내용을 다시 한 번 확인해주세요.')
       }
     } else {alert('입력한 내용을 다시 한 번 확인해주세요.');}
   }

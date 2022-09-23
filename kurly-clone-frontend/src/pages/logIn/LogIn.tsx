@@ -17,7 +17,6 @@ export default function LogIn({ memberId, password }: InputValue) {
     e.preventDefault();
     loginMutate.mutate({ memberId, password });
   }
-  
   return (
     <LogInButton onClick={ handleLogin }>
       <Span>로그인</Span>
@@ -37,7 +36,6 @@ const LogInButton = styled.button`
   background-color: rgb(95, 0, 128);
   border: 0px none;
 `
-
 const Span = styled.span`
   display: inline-block;
   font-size: 16px;

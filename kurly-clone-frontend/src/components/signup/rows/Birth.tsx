@@ -1,23 +1,22 @@
 import styled from 'styled-components'
 import { InnerWrapper } from './Address1';
-import { InputWrap, InputWrapper, LabelText, LeftWrapper, MiddleWrapper, RightWrapper } from './commonStyle';
+import { InputWrap, InputWrapper, LabelText, LeftWrapper, MiddleWrapper, RightWrapper } from './commonStyle'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBirthYear, setBirthMonth, setBirthDay } from '../../../features/auth/signupSlice'
 
-export default function Email() {
+type Birth = {
+  name: string;
+  placeholder: string;
+  value: string;
+  maxLength: number;
+  onChange: any;
+}
 
+export default function Email() {
   const birthYear = useSelector((state: any) => state.signup.birthYear);
   const birthMonth = useSelector((state: any) => state.signup.birthMonth);
   const birthDay = useSelector((state: any) => state.signup.birthDay);
   const dispatch = useDispatch();
-
-  type Birth = {
-    name: string;
-    placeholder: string;
-    value: string;
-    maxLength: number;
-    onChange: any;
-  }
 
   const onChangeBirthYear = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setBirthYear(e.target.value));
@@ -54,7 +53,6 @@ export default function Email() {
       onChange: onChangeBirthDay,
     },
   ]
-  
   return (
     <InputWrapper>
       <LeftWrapper>
@@ -98,7 +96,6 @@ const BirthContainer = styled.div`
   border-radius: 3px;
   padding: 0px 15px;
 `
-
 const Wrapper = styled.div`
   padding-bottom: 0px;
   input {
@@ -107,7 +104,6 @@ const Wrapper = styled.div`
     border: none;
   }
 `
-
 const BirthInput = styled.input`
   width: 100%;
   height: 40px;
@@ -121,7 +117,6 @@ const BirthInput = styled.input`
   outline: none;
   box-sizing: border-box;
 `
-
 const Slash = styled.span`
   height: 100%;
   &::after {

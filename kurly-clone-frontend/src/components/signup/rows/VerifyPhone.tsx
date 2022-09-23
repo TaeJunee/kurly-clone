@@ -51,7 +51,7 @@ export default function VerifyPhone() {
         </InputWrap>   
       </MiddleWrapper>
       <RightWrapper>
-      <Button type="button" disabled={ !isActive && !isTimeout } onClick={sendCode}>
+      <Button type="button" disabled={!isActive && !isTimeout} onClick={sendCode}>
         <span>인증번호 확인</span>
       </Button>
       </RightWrapper>

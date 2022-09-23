@@ -28,7 +28,6 @@ const SignUp = () => {
     e.preventDefault();
     signupMutate.mutate({ memberId, password, name, email, phone, address1, address2, gender, birthYear, birthMonth, birthDay })
   }
-  
   return (
     <SignUpButton type="submit" onClick={handleSignup}>
       <span>가입하기</span>

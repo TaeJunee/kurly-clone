@@ -104,7 +104,6 @@ const Button = styled.button`
     cursor: default;
   }
 `
-
 const SearchAddress = styled.button`
   display: block;
   padding: 0px 10px;
@@ -128,11 +127,9 @@ const SearchAddress = styled.button`
     }
   }
 `
-
 const MainAddress = styled.div`
   padding-bottom: 12px;
 `
-
 export const InnerWrapper = styled.div`
   position: relative;
   height: 48px;

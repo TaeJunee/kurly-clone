@@ -2,10 +2,9 @@ import styled from 'styled-components'
 import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
 import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
 import Form from '../../components/signup/Form'
-import SignUp from './SignUp'
+import SignUp from './Signup'
 
 export default function SignUpPage() {
-
   return (
     <>
     <GlobalHeader/>
@@ -33,7 +32,6 @@ const MainWrapper = styled.div`
   margin-bottom: 60px;
   background-color: #fff;
 `
-
 const SignUpText = styled.div`
   margin-bottom: 50px;
   font-size: 28px;
@@ -43,12 +41,10 @@ const SignUpText = styled.div`
   letter-spacing: -1px;
   color: #333;
 `
-
 const SignUpWrapper = styled.div`
   width: 640px;
   margin: 0px auto;
 `
-
 const TopBorder = styled.div`
   padding-bottom: 10px;
   border-bottom: 2px solid rgb(51, 51, 51);
@@ -57,16 +53,13 @@ const TopBorder = styled.div`
   line-height: 17px;
   text-align: right;
 `
-
 const BottomBorder = styled.div`
   padding: 10px 0px;
   border-bottom: 1px solid rgb(51, 51, 51);
 `
-
 const Star = styled.span`
   color: rgb(238, 106, 123);
 `
-
 const SignUpBtnWrapper = styled.div`
 display: flex;
 justify-content: center;

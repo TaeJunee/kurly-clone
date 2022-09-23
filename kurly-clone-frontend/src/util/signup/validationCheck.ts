@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from "react"
  
 export default function ValidationCheck() {
-  const [phone, setPhone] = useState<string>('');
-
   const [memberIdErr, setMemberIdErr] = useState<boolean>(false);
   const [passwordErr, setPasswordErr] = useState<number>(0);
   const [nameErr, setNameErr] = useState<boolean>(false);
@@ -51,7 +49,6 @@ export default function ValidationCheck() {
   const onChangePhone = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const numRegEx = /[0-9]$/g;
     const phoneRegEx = /^01([0|1|6|7|8|9])([0-9]{4})([0-9]{4})$/;
-    setPhone(e.target.value);
     if (numRegEx.test(e.target.value)) {
       if (phoneRegEx.test(e.target.value)) {
         setPhoneErr(false);
@@ -68,7 +65,6 @@ export default function ValidationCheck() {
   }, [])
 
   return {
-    phone,
     memberIdErr,
     passwordErr,
     nameErr,

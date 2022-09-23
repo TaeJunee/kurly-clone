@@ -13,7 +13,6 @@ export default function Name() {
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setName(e.target.value));
   }
-
   return (
     <InputWrapper>
       <LeftWrapper>

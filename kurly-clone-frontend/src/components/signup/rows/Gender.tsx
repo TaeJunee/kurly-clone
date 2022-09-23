@@ -3,14 +3,13 @@ import { InputWrap, InputWrapper, LabelText, LeftWrapper, MiddleWrapper, RightWr
 import { useDispatch, useSelector } from 'react-redux'
 import { setGender } from '../../../features/auth/signupSlice'
 
+type RadioInputField = {
+  id: string;
+  value: string;
+  text: string;
+}
 
 export default function Gender() {
-
-  type RadioInputField = {
-    id: string;
-    value: string;
-    text: string;
-  }
   const gender = useSelector((state: any) => state.signup.gender);
   const dispatch = useDispatch();
   
@@ -18,24 +17,20 @@ export default function Gender() {
     dispatch(setGender(e.target.value));
   }
 
-  const genderRadio: RadioInputField[] = [
-    {
+  const genderRadio: RadioInputField[] = [{
       id: "gender-man",
       value: "MALE",
       text: "남자",
-    },
-    {
+    }, {
       id: "gender-woman",
       value: "FEMALE",
       text: "여자",
-    },
-    {
+    }, {
       id: "gender-none",
       value: "NONE",
       text: "선택안함",
     },
   ]
-
   return (
     <InputWrapper>
       <LeftWrapper>
@@ -71,7 +66,6 @@ const RadioContainer = styled.div`
   justify-content: space-between;
   flex-direction: row;
 `
-
 const RadioLabel = styled.label`
   position: relative;
   display: flex;
@@ -81,7 +75,6 @@ const RadioLabel = styled.label`
     font-size: 14px;
   }
 `
-
 const RadioInput = styled.input`
   overflow: hidden;
   position: absolute;
@@ -89,7 +82,6 @@ const RadioInput = styled.input`
   height: 1px;
   clip: rect(0px, 0px, 0px, 0px);
 `
-
 const RadioBtn = styled.span<{ checked: boolean }>`
   min-width: 24px;
   min-height: 24px;
@@ -108,7 +100,6 @@ const RadioBtn = styled.span<{ checked: boolean }>`
     border-radius: 50%;
     background-color: ${({ checked }) => checked ? 'white' : '' };
 `
-
 const RadioText = styled.span`
   position: relative;
   font-size: 16px;

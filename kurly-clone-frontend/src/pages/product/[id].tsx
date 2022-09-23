@@ -11,7 +11,6 @@ export default function GoodsPage() {
   
   if (isLoading) { return <span>Loading...</span> }
   if (error instanceof Error) { return <span>Error: {error.message}</span>}
-
   return (
     <>
     <GlobalHeader />
@@ -84,32 +83,26 @@ const Wrapper = styled.div`
   width: 100%;
   position: relative;
 `
-
 const Wrap = styled.div`
   position: relative;
   width: 1050px;
   margin: 0px auto;
   padding-top: 30px;
 `
-
 const ProductAtf = styled.article`
   display: flex;
   justify-content: space-between;
   font-family: "Noto Sans";
 `
-
 const ProductImg = styled.div<{ background: string }>`
   width: 430px;
   height: 552px;
   background: url(${({ background }) => background}) 0% 0% / cover, url(https://res.kurly.com/_next/static/images/noimg-150x195-2c819ff….svg) 50% 50% / contain no-repeat rgb(245, 245, 245);
 `
-
 const ProductInfoContainer = styled.div`
   width: 560px;
 `
-
 const ProductNameContainer = styled.div``
-
 const Delivery = styled.span`
 font-weight: 500;
 line-height: 1.36;
@@ -118,13 +111,11 @@ color: rgb(153, 153, 153);
 margin-bottom: 6px;
 width: 500px;
 `
-
 const ProductNameWrapper = styled.div`
   display: flex;
   flex: 1 1 0%;
   justify-content: space-between;
 `
-
 const ProductName = styled.h2`
   width: 500px;
   font-weight: 500;
@@ -135,13 +126,11 @@ const ProductName = styled.h2`
   word-break: keep-all;
   margin-right: 20px;
 `
-
 const ShareButton = styled.button`
 width: 40px;
 height: 40px;
 background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBzdHJva2U9IiNEREQiIGN4PSIyMCIgY3k9IjIwIiByPSIxOS41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAuNSAxMSkiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjgiPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIzIiBjeT0iOSIgcj0iMi4xIi8+CiAgICAgICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUuMTM3KSI+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSI4Ljg2MyIgY3k9IjMiIHI9IjIuMSIvPgogICAgICAgICAgICAgICAgPHBhdGggc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgZD0iTTAgOC4xMzYgNi4zNjMgNC41Ii8+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgNS4xMzcgMTgpIj4KICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjguODYzIiBjeT0iMyIgcj0iMi4xIi8+CiAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBkPSJNMCA4LjEzNiA2LjM2MyA0LjUiLz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==) 50% 50% no-repeat;
 `
-
 const ProductSubName = styled.p`
 padding-top: 5px;
 font-size: 14px;
@@ -149,7 +138,6 @@ color: rgb(181, 181, 181);
 line-height: 19px;
 letter-spacing: -0.5px;
 `
-
 const PriceWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -159,13 +147,11 @@ const PriceWrapper = styled.div`
   line-height: 30px;
   letter-spacing: -0.5px;
 `
-
 const Price = styled.span`
   padding-right: 4px;
   font-size: 28px;
   color: rgb(51, 51, 51);  
 `
-
 const Won = styled.span`
   display: inline-block;
   position: relative;
@@ -182,11 +168,9 @@ const Membership = styled.div`
   letter-spacing: -0.5px;
   margin-top: 14px;
 `
-
 const ProductNoticeContainer = styled.div`
   margin-top: 20px;
 `
-
 const ProductNoticeRow = styled.div`
   display: flex;
   flex: 1 1 0%;
@@ -198,7 +182,6 @@ const ProductNoticeRow = styled.div`
   border-top: 1px solid rgb(244, 244, 244);
   font-size: 14px;
   letter-spacing: -0.5px;
-
   dt {
     position: relative;
     top: 1px;
@@ -207,7 +190,6 @@ const ProductNoticeRow = styled.div`
     color: rgb(102, 102, 102);
     line-height: 19px;
   }
-
   dd {
     display: flex;
     flex: 1 1 0%;
@@ -221,10 +203,9 @@ const ProductNoticeRow = styled.div`
     word-break: break-all;
     overflow: hidden;
     padding-bottom: 5px;
-}
   }
+}
 `
-
 const NavContainer = styled.nav`
   z-index: 20;
   position: sticky;
@@ -234,13 +215,11 @@ const NavContainer = styled.nav`
   background-color: rgb(255, 255, 255);
   margin-top: 50px;
 `
-
 const NavWrapper = styled.nav`
   display: flex;
   flex-wrap: wrap;
   height: 60px;
 `
-
 const NavItems = styled.div`
   display: flex;
   flex: 1 1 0%;
@@ -252,7 +231,6 @@ const NavItems = styled.div`
     bordor-right-width: 1px;
   }
 `
-
 const NavLink = styled.a`
   display: flex;
   flex: 1 1 0%;
@@ -260,13 +238,11 @@ const NavLink = styled.a`
   align-items: center;
   height: 100%;
 `
-
 const NavText = styled.span`
   font-size: 16px;
   font-weight: 500;
   color: rgb(102, 102, 102);
 `
-
 const ProductDetailContainer = styled.div.attrs(props => ({
   className: props.className,
 }))`
@@ -278,14 +254,12 @@ const ProductDetailContainer = styled.div.attrs(props => ({
     font-weight: 300;
     letter-spacing: 0px;
   }
-
   img {
     width: 100%;
     box-sizing: border-box;
     margin: 60px 0px;
   }
 `
-
 const ProductDetails = styled.div`
   position: relative;
   width: 1010px;

@@ -26,7 +26,6 @@ export default function Email() {
       emailCheckMutation.mutate({ email });
     }
   }
-  
   return (
     <InputWrapper>
       <LeftWrapper>

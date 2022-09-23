@@ -6,17 +6,16 @@ import { setMemberId } from '../../../features/auth/signupSlice'
 import { useMutation } from '@tanstack/react-query'
 import { idDuplicationCheck } from '../../../api/auth'
 
-
 export default function MemberId() {
   const ERROR_MESSAGE = '6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합'
   const { memberIdErr } = ValidationCheck();
   const memberId = useSelector((state: any) => state.signup.memberId);
   const dispatch = useDispatch();
+  
   const idCheckMutation = useMutation(idDuplicationCheck, {
     onSuccess: (data) => console.log(data.payload),
     onError: (data) => console.log(data)
   });
-  
   
   const idCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

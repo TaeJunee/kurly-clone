@@ -15,7 +15,6 @@ export default function Password() {
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setPassword(e.target.value));
   }
-
   return (
     <>
     <InputWrapper>

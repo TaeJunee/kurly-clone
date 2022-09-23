@@ -2,13 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const categorySlice = createSlice({
   name: 'category',
-  initialState:
-  {
+  initialState: {
     name: null,
     isSubMenu: false,
   },
-  reducers:
-  {
+  reducers: {
     subMenuUp: (state, action) => {
       state.name = action.payload;
       state.isSubMenu = true;

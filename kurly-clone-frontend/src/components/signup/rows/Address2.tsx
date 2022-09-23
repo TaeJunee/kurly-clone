@@ -4,9 +4,7 @@ import { InputField } from "./commonStyle";
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddress2 } from '../../../features/auth/signupSlice'
 
-
 export default function Address2() {
-
   const address2 = useSelector((state: any) => state.signup.address2);
   const dispatch = useDispatch();
   

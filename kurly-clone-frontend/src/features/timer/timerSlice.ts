@@ -2,12 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const timerSlice = createSlice({
   name: 'timer',
-  initialState:
-  {
+  initialState: {
     timeout: true,
   },
-  reducers: 
-  {
+  reducers: {
     timeout: (state) => {
       state.timeout = true;
     },

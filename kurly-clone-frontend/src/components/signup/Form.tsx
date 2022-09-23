@@ -12,8 +12,6 @@ import VerifyPhone from './rows/VerifyPhone'
 import { isTimeover } from '../../features/timer/timerSlice'
 
 export default function Form() {
-
-
   const isTimeout = useSelector(isTimeover);
   return (
     <InputContainer>
@@ -22,14 +20,13 @@ export default function Form() {
       <Name />
       <Email />
       <Phone />
-      { !isTimeout && <VerifyPhone /> }
+      {!isTimeout && <VerifyPhone />}
       <Address />
       <Gender />
       <Birth />
     </InputContainer>
   )
 }
-
 
 const InputContainer = styled.div`
   padding: 0px;

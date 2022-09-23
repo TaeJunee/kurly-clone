@@ -65,14 +65,22 @@ const login = async({ memberId, password }: LoginData) => {
     throw Error(e);
   }
 }
-
+const requestVerify = async (to: string) => {
+  try {
+    const { data } = await axios.post(`${BASE_URL}/auth/sms/send`,{
+      to
+    })
+    return data;
+  } catch (e: any) {
+    throw Error(e);
+  }
+}
 const verifyPhone = async ({ phone, code }: VerifyPhone) => {
   try {
     const { data } = await axios.post(`${BASE_URL}/auth/authenticate`,{
       phone,
       code
     })
-
     return data;
   } catch (e: any) {
     throw Error(e);
@@ -103,4 +111,4 @@ const emailDuplicationCheck = async ({ email }: DuplicationCheck) => {
   }
 }
 
-export { signup, login, verifyPhone, idDuplicationCheck, emailDuplicationCheck }
+export { signup, login, verifyPhone, idDuplicationCheck, emailDuplicationCheck, requestVerify }

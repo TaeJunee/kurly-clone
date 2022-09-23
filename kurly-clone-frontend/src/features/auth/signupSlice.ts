@@ -1,20 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-type Member = {
-  memberId: string;
-  password: string;
-  name: string;
-  email: string;
-  phone: string;
-  address1: string;
-  address2: string;
-  gender: string;
-  birthYear: string;
-  birthMonth: string;
-  birthDay: string;
-}
-
-export const initialState: Member = {
+export const initialState = {
   memberId: '',
   password: '',
   name: '',

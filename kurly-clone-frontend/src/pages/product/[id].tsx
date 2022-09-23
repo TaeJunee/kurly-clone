@@ -1,34 +1,50 @@
 import styled from "styled-components"
 import GlobalFooter from "../../components/common/globalFooter/GlobalFooter"
 import GlobalHeader from "../../components/common/globalHeader/GlobalHeader"
+import { useParams } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
+import { getProduct } from "../../api/product"
 
 export default function GoodsPage() {
+  const { id } = useParams();
+  const { data, isLoading, error } = useQuery(['goods', id], getProduct)
+  
+  if (isLoading) { return <span>Loading...</span> }
+  if (error instanceof Error) { return <span>Error: {error.message}</span>}
+
   return (
     <>
     <GlobalHeader />
     <Wrapper>
     <Wrap>
       <ProductAtf id="product-atf">
-        <ProductImg />
+        <ProductImg background={data.thumbnail}/>
         <ProductInfoContainer>
           <ProductNameContainer>
             <Delivery></Delivery>
             <ProductNameWrapper>
-              <ProductName>{}</ProductName>
+              <ProductName>{data.name}</ProductName>
               <ShareButton />
             </ProductNameWrapper>
-            <ProductSubName>{}</ProductSubName>
+            <ProductSubName>{data.description}</ProductSubName>
           </ProductNameContainer>
           <PriceWrapper>
-            <Price>{}</Price>
+            <Price>{data.price.toLocaleString()}</Price>
             <Won>원</Won>
           </PriceWrapper>
           <Membership>로그인 후, 적립 혜택이 제공됩니다.</Membership>
-        <ProductNoticeContainer>    
+        <ProductNoticeContainer>
+          {Object.entries(JSON.parse(data.info)).map((item: any) => {
+            return (
+              <ProductNoticeRow>
+                <dt>{item[0]}</dt>
+                <dd>{item[1].slice(2, 4) === '배송'
+                  ? <><p>{item[1].slice(0, 4)}</p><p>{item[1].slice(4, item[1].length)}</p></>
+                  : item[1]}</dd>
+              </ProductNoticeRow>
+            )})}
         </ProductNoticeContainer>
-
         </ProductInfoContainer>
-        
       </ProductAtf>
       <NavContainer>
           <NavWrapper>
@@ -47,7 +63,12 @@ export default function GoodsPage() {
           </NavWrapper>
         </NavContainer>
         <ProductDetailContainer>
-          <ProductDetails id='description'></ProductDetails>
+          <ProductDetails id='description'>
+            <div className='goods-wrap'>
+            {data.imgMain.slice(1, -1).replace(/\'/gi, "").split(',').map((item: string) => {
+              return <div className='pic'><img src={item.trim()} /></div>
+            })}</div>
+            </ProductDetails>
           <ProductDetails id='detail'></ProductDetails>
           <ProductDetails id='review'></ProductDetails>
           <ProductDetails id='inquiry'></ProductDetails>
@@ -77,10 +98,10 @@ const ProductAtf = styled.article`
   font-family: "Noto Sans";
 `
 
-const ProductImg = styled.div`
+const ProductImg = styled.div<{ background: string }>`
   width: 430px;
   height: 552px;
-  background: url(https://img-cf.kurly.com/shop/data/goods/1593751693106l0.jpg) 0% 0% / cover, url(https://res.kurly.com/_next/static/images/noimg-150x195-2c819ff….svg) 50% 50% / contain no-repeat rgb(245, 245, 245);
+  background: url(${({ background }) => background}) 0% 0% / cover, url(https://res.kurly.com/_next/static/images/noimg-150x195-2c819ff….svg) 50% 50% / contain no-repeat rgb(245, 245, 245);
 `
 
 const ProductInfoContainer = styled.div`
@@ -166,6 +187,44 @@ const ProductNoticeContainer = styled.div`
   margin-top: 20px;
 `
 
+const ProductNoticeRow = styled.div`
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: row;
+  align-items: flex-start;
+  overflow: hidden;
+  width: 100%;
+  padding: 17px 0px 18px;
+  border-top: 1px solid rgb(244, 244, 244);
+  font-size: 14px;
+  letter-spacing: -0.5px;
+
+  dt {
+    position: relative;
+    top: 1px;
+    width: 128px;
+    height: 100%;
+    color: rgb(102, 102, 102);
+    line-height: 19px;
+  }
+
+  dd {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+  }
+
+  p: first-of-type {
+    color: rgb(51, 51, 51);
+    line-height: 19px;
+    white-space: pre-line;
+    word-break: break-all;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+  }
+`
+
 const NavContainer = styled.nav`
   z-index: 20;
   position: sticky;
@@ -208,8 +267,23 @@ const NavText = styled.span`
   color: rgb(102, 102, 102);
 `
 
-const ProductDetailContainer = styled.div`
+const ProductDetailContainer = styled.div.attrs(props => ({
+  className: props.className,
+}))`
   padding-bottom: 60px;
+  & .goods-wrap {
+    width: 1010px;
+    margin: 0px auto;
+    font-family: "Noto Sans";
+    font-weight: 300;
+    letter-spacing: 0px;
+  }
+
+  img {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 60px 0px;
+  }
 `
 
 const ProductDetails = styled.div`

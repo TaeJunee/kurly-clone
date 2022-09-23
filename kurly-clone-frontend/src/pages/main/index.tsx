@@ -1,5 +1,3 @@
-import React from 'react';
-import styled from 'styled-components'
 import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
 import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
 import Swipers from '../../components/swiper/Swipers'
@@ -7,7 +5,6 @@ import ProductType from '../../components/product/ProductType'
 import { salesProductsList } from '../../components/fakeRepo/salesProducts/salesProducts';
 
 function MainPage() {
- 
   return (
     <>
       <GlobalHeader />

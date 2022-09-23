@@ -1,52 +1,39 @@
-import { useCallback, useState } from "react"
 import styled from "styled-components"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import { propsType } from "../../components/signup/propsType"
-import { useCookies } from "react-cookie"
+import { signup } from "../../api/auth"
+import { useMutation } from '@tanstack/react-query'
+import { useSelector } from "react-redux"
 
-const SignUp = ({ memberId, password, name, email, phone, address, extraAddress, checked, birth, memberIdErr, passwordErr, passwordChkErr, nameErr, emailErr, phoneErr }: propsType) => {
-  const navigate = useNavigate();
+type ErrorType = {
+  message: string;
+}
+
+const SignUp = () => {
+  const memberId = useSelector((state: any) => state.signup.memberId);
+  const password = useSelector((state: any) => state.signup.password);
+  const name = useSelector((state: any) => state.signup.name);
+  const email = useSelector((state: any) => state.signup.email);
+  const phone = useSelector((state: any) => state.signup.phone);
+  const address1 = useSelector((state: any) => state.signup.address1);
+  const address2 = useSelector((state: any) => state.signup.address2);
+  const gender = useSelector((state: any) => state.signup.gender);
+  const birthYear = useSelector((state: any) => state.signup.birthYear);
+  const birthMonth = useSelector((state: any) => state.signup.birthMonth);
+  const birthDay = useSelector((state: any) => state.signup.birthDay);
+
+  const signupMutate = useMutation(signup, {
+    onError: (data: ErrorType) => { console.log(data) }
+  })
   
-  const doSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSignup = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (!memberIdErr && !passwordErr && !passwordChkErr && !nameErr && !emailErr && !phoneErr) {
-      try {
-        await axios
-          .post(
-            'http://localhost:8080/api/auth/signup',
-            {
-              memberId: memberId,
-              password: password,
-              name: name,
-              email: email,
-              phone: phone,
-              address1: address,
-              address2: extraAddress,
-              gender: checked,
-              birthYear: birth?.year,
-              birthMonth: birth?.month,
-              birthDay: birth?.day,
-            },
-          )
-          .then((res) => {
-            window.alert(res.data.payload);
-            navigate('/login');
-
-    }
-    )
-      } catch (error) {
-        window.alert('입력한 내용을 다시 한 번 확인해주세요.')
-      }
-    } else {alert('입력한 내용을 다시 한 번 확인해주세요.');}
+    signupMutate.mutate({ memberId, password, name, email, phone, address1, address2, gender, birthYear, birthMonth, birthDay })
   }
- 
+  
   return (
-    <SignUpButton type="submit" onClick={doSignUp}>
+    <SignUpButton type="submit" onClick={handleSignup}>
       <span>가입하기</span>
     </SignUpButton>
   )
-
 }
 
 export default SignUp

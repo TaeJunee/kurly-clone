@@ -1,71 +1,35 @@
 import styled from 'styled-components'
-import { useSelector } from 'react-redux';
-import Address from './Address'
-import Email from './Email'
-import Id from './Id'
-import Name from './Name'
-import Password from './Password'
-import Phone from './Phone'
-import Gender from './Gender'
-import Birth from './Birth'
-import { propsType } from './propsType'
-import PhoneCheck from './PhoneCheck'
-import { isTimeover } from '../../redux/features/timerSlice';
+import { useSelector } from 'react-redux'
+import Address from './rows/Address1'
+import Email from './rows/Email'
+import MemberId from './rows/MemberId'
+import Name from './rows/Name'
+import Password from './rows/Password'
+import Phone from './rows/Phone'
+import Gender from './rows/Gender'
+import Birth from './rows/Birth'
+import VerifyPhone from './rows/VerifyPhone'
+import { isTimeover } from '../../features/timer/timerSlice'
 
-export default function Form({ 
-  memberId,
-  password,
-  passwordChk,
-  name,
-  email,
-  phone,
-  address,
-  extraAddress,
-  checked,
-  birth,
-  isActive,
-  isComplete,
-  memberIdErr,
-  passwordErr,
-  passwordChkErr,
-  nameErr,
-  emailErr,
-  phoneErr,
-  memberIdErrMessage,
-  passwordErrMessage,
-  passwordChkErrMessage,
-  nameErrMessage,
-  emailErrMessage,
-  phoneErrMessage,
-  onChangeMemberId,
-  onChangePassword,
-  onChangePasswordChk,
-  onChangeName,
-  onChangeEmail,
-  onChangePhone,
-  handleClick,
-  onChangeExtraAddress,
-  onChangeGender,
-  onChangeBirthYear,
-  onChangeBirthMonth,
-  onChangeBirthDay,
-}: propsType) {
+export default function Form() {
+
 
   const isTimeout = useSelector(isTimeover);
   return (
     <InputContainer>
-      <Id memberId={memberId} memberIdErr={memberIdErr} memberIdErrMessage={memberIdErrMessage} onChangeMemberId={onChangeMemberId} />
-      <Password password={password} passwordChk={passwordChk} passwordErr={passwordErr} passwordChkErr={passwordChkErr} passwordErrMessage={passwordErrMessage} passwordChkErrMessage={passwordChkErrMessage} onChangePassword={onChangePassword} onChangePasswordChk={onChangePasswordChk}/>
-      <Name name={name} nameErr={nameErr} nameErrMessage={nameErrMessage} onChangeName={onChangeName} />
-      <Email email={email} emailErr={emailErr} emailErrMessage={emailErrMessage} onChangeEmail={onChangeEmail} />
-      <Phone phone={phone} phoneErr={phoneErr} phoneErrMessage={phoneErrMessage} onChangePhone={onChangePhone} isActive={isActive} />
-      { !isTimeout && <PhoneCheck phone={phone}/> }
-      <Address address={address} extraAddress={extraAddress} isComplete={isComplete} handleClick={handleClick} onChangeExtraAddress={onChangeExtraAddress} />
-      <Gender checked={checked} onChangeGender={onChangeGender}/>
-      <Birth birth={birth} onChangeBirthYear={onChangeBirthYear} onChangeBirthMonth={onChangeBirthMonth} onChangeBirthDay={onChangeBirthDay} />
+      <MemberId />
+      <Password />
+      <Name />
+      <Email />
+      <Phone />
+      { !isTimeout && <VerifyPhone /> }
+      <Address />
+      <Gender />
+      <Birth />
     </InputContainer>
   )
 }
+
 
 const InputContainer = styled.div`
   padding: 0px;

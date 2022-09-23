@@ -2,10 +2,9 @@ import styled from 'styled-components'
 import SubCategory from './SubCategory'
 import { CategoryType } from './categoryList'
 import { useDispatch } from 'react-redux'
-import { subMenuUp } from '../../../../redux//features/categorySlice'
-import { subMenuDown } from '../../../../redux//features/categorySlice'
-import { currentCategory } from '../../../../redux//features/categorySlice'
-import { currentStatus } from '../../../../redux//features/categorySlice'
+import { subMenuUp } from '../../../../features/category/categorySlice'
+import { subMenuDown } from '../../../../features/category/categorySlice'
+import { currentCategory } from '../../../../features/category/categorySlice'
 import { useSelector } from 'react-redux'
 
 type PropsType = {

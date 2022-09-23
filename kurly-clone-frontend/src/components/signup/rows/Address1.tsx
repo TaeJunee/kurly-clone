@@ -1,8 +1,37 @@
 import styled from 'styled-components'
-import { propsType } from './propsType'
+import Address2 from './Address2'
+import { useState } from 'react'
+import { InputField, InputWrap, InputWrapper, LabelText, LeftWrapper, MiddleWrapper, RightWrapper, Star } from './commonStyle'
+import { useDaumPostcodePopup } from 'react-daum-postcode'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAddress1 } from '../../../features/auth/signupSlice'
 
-export default function Address({ address, extraAddress, isComplete, handleClick, onChangeExtraAddress }: propsType) {
+export default function Address() {
+  const open = useDaumPostcodePopup();
+  const [isComplete, setIsComplete] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const address1 = useSelector((state: any) => state.signup.address1);
 
+  const handleComplete = (data: any) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+    setIsComplete(true);
+    dispatch(setAddress1(fullAddress));
+  };
+
+  const handleClick = () => {
+    open({ onComplete: handleComplete });
+  };
 
   return (
     <InputWrapper>
@@ -25,21 +54,12 @@ export default function Address({ address, extraAddress, isComplete, handleClick
                   name="address"
                   placeholder="주소를 검색해주세요"
                   type="text"
-                  value={address}
+                  value={address1}
                   readOnly
                 />
               </InnerWrapper>
             </MainAddress>
-            <ExtraAddress>
-              <InnerWrapper>
-                <InputField
-                  name="subAddress"
-                  placeholder="나머지 주소를 입력해주세요"
-                  type="text"
-                  onChange={onChangeExtraAddress}
-                />
-              </InnerWrapper>
-            </ExtraAddress>
+            <Address2 />
             </>}
         </InputWrap>
       </MiddleWrapper>
@@ -54,55 +74,6 @@ export default function Address({ address, extraAddress, isComplete, handleClick
     </InputWrapper>
   )
 }
-
-const InputWrapper = styled.div`
-  display: inline-flex;
-  width: 100%;
-  padding: 10px 20px;
-`
-
-const LeftWrapper = styled.div`
-  width: 139px;
-  padding-top: 12px;
-`
-
-const MiddleWrapper = styled.div`
-  flex: 1 1 0%;
-`
-
-const RightWrapper = styled.div`
-  width: 120px;
-  margin-left: 8px;
-  `
-
-  const LabelText = styled.label`
-  font-weight: 500;
-  color: rgb(51, 51, 51);
-  line-height: 20px;
-`
-
-  const Star = styled.span`
-  color: rgb(238, 106, 123);
-`
-
-const InputWrap = styled.div`
-  position: relative;
-  padding-bottom: 0px;
-`
-
-const InputField = styled.input`
-width: 100%;
-height: 48px;
-padding: 0px 11px 1px 15px;
-border-radius: 4px;
-border: 1px solid rgb(221, 221, 221);
-font-weight: 400;
-font-size: 16px;
-line-height: 1.5;
-color: rgb(51, 51, 51);
-outline: none;
-box-sizing: border-box;
-`
 
 const Button = styled.button`
   display: block;
@@ -162,11 +133,7 @@ const MainAddress = styled.div`
   padding-bottom: 12px;
 `
 
-const ExtraAddress = styled.div`
-  padding-bottom: 0px;
-`
-
-const InnerWrapper = styled.div`
+export const InnerWrapper = styled.div`
   position: relative;
   height: 48px;
 `

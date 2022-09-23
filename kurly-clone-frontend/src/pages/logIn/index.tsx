@@ -1,18 +1,13 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
 import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
 import LogIn from './LogIn'
-import InputHandler from './inputHandler'
 
 function LogInPage() {
-  const {
-    memberId,
-    password,
-    onChangeMemberId,
-    onChangePassword,
-  } = InputHandler();
-
+  const [memberId, setMemberId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
   return (
     <>
@@ -29,7 +24,7 @@ function LogInPage() {
                     placeholder="아이디를 입력해주세요"
                     type="text"
                     value={memberId}
-                    onChange={onChangeMemberId} />
+                    onChange={ (e) => setMemberId(e.target.value) } />
                 </InnerWrapper>
               </IdWrapper>
               <PwWrapper>
@@ -40,7 +35,7 @@ function LogInPage() {
                     type="password"
                     autoComplete='off'
                     value={password}
-                    onChange={onChangePassword} />
+                    onChange={ (e) => setPassword(e.target.value) } />
                 </InnerWrapper>
               </PwWrapper>
             </InputWrap>
@@ -50,9 +45,7 @@ function LogInPage() {
               <Find>비밀번호 찾기</Find>
             </FindWrap>
             <ButtonWrap>
-              <LogIn
-                memberId={memberId}
-                password={password} />
+              <LogIn memberId={ memberId } password={ password } />
               <SignUpButton onClick={() => navigate('/signup')}>
                 <Span>회원가입</Span>
               </SignUpButton>

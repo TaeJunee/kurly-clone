@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import ProductSwiper from './ProductSwiper'
 import { ProductInformation } from '../fakeRepo/salesProducts/salesProducts'

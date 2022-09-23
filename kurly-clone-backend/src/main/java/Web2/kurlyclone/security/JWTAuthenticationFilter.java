@@ -31,7 +31,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private final UserRepo userRepo;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, UserRepo userRepo) {
-        super.setFilterProcessesUrl("api/auth/signin");
+        super.setFilterProcessesUrl("/api/auth/signin");
         this.authenticationManager = authenticationManager;
         this.userRepo = userRepo;
         this.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler());

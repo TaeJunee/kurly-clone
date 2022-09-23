@@ -1,14 +1,23 @@
-import styled, { css } from 'styled-components'
-import { propsType } from './propsType';
+import styled from 'styled-components'
+import { InputWrap, InputWrapper, LabelText, LeftWrapper, MiddleWrapper, RightWrapper } from './commonStyle';
+import { useDispatch, useSelector } from 'react-redux'
+import { setGender } from '../../../features/auth/signupSlice'
 
-export default function Gender({ checked, onChangeGender }: propsType) {
+
+export default function Gender() {
 
   type RadioInputField = {
     id: string;
     value: string;
     text: string;
   }
+  const gender = useSelector((state: any) => state.signup.gender);
+  const dispatch = useDispatch();
   
+  const onChangeGender = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setGender(e.target.value));
+  }
+
   const genderRadio: RadioInputField[] = [
     {
       id: "gender-man",
@@ -43,9 +52,9 @@ export default function Gender({ checked, onChangeGender }: propsType) {
                   name="gender"
                   type="radio"
                   value={item.value}
-                  checked={checked === item.value}
+                  checked={gender === item.value}
                   onChange={onChangeGender}/>
-                <RadioBtn checked={checked === item.value}><div></div></RadioBtn>
+                <RadioBtn checked={gender === item.value}><div></div></RadioBtn>
                 <RadioText>{item.text}</RadioText>
               </RadioLabel> 
             ))}
@@ -56,37 +65,6 @@ export default function Gender({ checked, onChangeGender }: propsType) {
     </InputWrapper>
   )
 }
-
-const InputWrapper = styled.div`
-  display: inline-flex;
-  width: 100%;
-  padding: 10px 20px;
-`
-
-const LeftWrapper = styled.div`
-  width: 139px;
-  padding-top: 12px;
-`
-
-const MiddleWrapper = styled.div`
-  flex: 1 1 0%;
-`
-
-const RightWrapper = styled.div`
-  width: 120px;
-  margin-left: 8px;
-  `
-
-  const LabelText = styled.label`
-  font-weight: 500;
-  color: rgb(51, 51, 51);
-  line-height: 20px;
-`
-
-const InputWrap = styled.div`
-  position: relative;
-  padding-bottom: 0px;
-`
 
 const RadioContainer = styled.div`
   display: flex;

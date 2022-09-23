@@ -3,52 +3,8 @@ import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
 import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
 import Form from '../../components/signup/Form'
 import SignUp from './SignUp'
-import ValidationCheck from './ValidationCheck'
-import SearchPostcode from '../../components/signup/SearchPostCode'
 
 export default function SignUpPage() {
-
-  const {
-    isComplete,
-    address,
-    handleClick,
-  } = SearchPostcode()
-
-  const {
-    checked,
-    memberId,
-    password,
-    passwordChk,
-    name,
-    email,
-    phone,
-    extraAddress,
-    birth,
-    memberIdErr,
-    memberIdErrMessage,
-    passwordErr,
-    passwordErrMessage,
-    passwordChkErr,
-    passwordChkErrMessage,
-    nameErr,
-    emailErr,
-    emailErrMessage,
-    phoneErr,
-    phoneErrMessage,
-    nameErrMessage,
-    isActive,
-    onChangeMemberId,
-    onChangePassword,
-    onChangePasswordChk,
-    onChangeName,
-    onChangeEmail,
-    onChangePhone,
-    onChangeExtraAddress,
-    onChangeRadio,
-    onChangeBirthYear,
-    onChangeBirthMonth,
-    onChangeBirthDay,
-  } = ValidationCheck()
 
   return (
     <>
@@ -59,61 +15,10 @@ export default function SignUpPage() {
         <TopBorder>
           <Star>*</Star> 필수입력사항
         </TopBorder>
-        <Form 
-          memberId={memberId}
-          password={password}
-          passwordChk={passwordChk}
-          name={name}
-          email={email}
-          phone={phone}
-          address={address}
-          extraAddress={extraAddress}
-          checked={checked}
-          birth={birth}
-          memberIdErr={memberIdErr}
-          passwordErr={passwordErr}
-          passwordChkErr={passwordChkErr}
-          nameErr={nameErr}
-          emailErr={emailErr}
-          phoneErr={phoneErr}
-          memberIdErrMessage={memberIdErrMessage}
-          passwordErrMessage={passwordErrMessage}
-          passwordChkErrMessage={passwordChkErrMessage}
-          nameErrMessage={nameErrMessage}
-          emailErrMessage={emailErrMessage}
-          phoneErrMessage={phoneErrMessage}
-          isActive={isActive}
-          isComplete={isComplete}
-          onChangeMemberId={onChangeMemberId}
-          onChangePassword={onChangePassword}
-          onChangePasswordChk={onChangePasswordChk}
-          onChangeName={onChangeName}
-          onChangeEmail={onChangeEmail}
-          onChangePhone={onChangePhone}
-          handleClick={handleClick}
-          onChangeExtraAddress={onChangeExtraAddress}
-          onChangeGender={onChangeRadio}
-          onChangeBirthYear={onChangeBirthYear}
-          onChangeBirthMonth={onChangeBirthMonth}
-          onChangeBirthDay={onChangeBirthDay} />
+        <Form />
         <BottomBorder/>
         <SignUpBtnWrapper>
-          <SignUp 
-            memberId={memberId}
-            password={password}
-            name={name}
-            email={email}
-            phone={phone}
-            address={address}
-            extraAddress={extraAddress}
-            checked={checked}
-            birth={birth}
-            memberIdErr={memberIdErr}
-            passwordErr={passwordErr}
-            passwordChkErr={passwordChkErr}
-            nameErr={nameErr}
-            emailErr={emailErr}
-            phoneErr={phoneErr} />
+          <SignUp />
         </SignUpBtnWrapper>
       </SignUpWrapper>
     </MainWrapper>

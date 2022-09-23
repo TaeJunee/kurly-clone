@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { timeout } from '../../redux/features/timerSlice'
+import { timeout } from '../../features/timer/timerSlice'
 
 export default function Timer() {
 
   const dispatch = useDispatch();
-  // const minutes = useSelector(currentMinutes);
-  // const seconds = useSelector(currentSeconds);
 
   const [minutes, setMinutes] = useState<number>(2);
   const [seconds, setSeconds] = useState<number>(59);

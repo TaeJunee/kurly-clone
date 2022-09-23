@@ -10,8 +10,8 @@ public class GoodsDto {
     private String thumbnail;
     private String name;
     private String description;
-    private int price;
-    private float discount;
+    private Integer price;
+    private Float discount;
     private String info;
     private String imgMain;
 }

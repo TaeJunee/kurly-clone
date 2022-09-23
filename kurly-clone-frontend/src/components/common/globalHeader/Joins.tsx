@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { selectUser } from '../../../redux/features/userSlice';
+import { selectUser } from '../../../features/auth/userSlice';
 
 export default function Joins() {
   const navigate = useNavigate();

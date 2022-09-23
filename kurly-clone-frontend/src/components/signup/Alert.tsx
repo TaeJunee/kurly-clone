@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-type Props = {
+type Message = {
   message: string;
 }
 
-export default function Alert({ message }: Props) {
+export default function Alert({ message }: Message) {
   return (
     <AlertWrapper><Text>{ message }</Text></AlertWrapper>
   )
@@ -13,7 +13,6 @@ export default function Alert({ message }: Props) {
 const AlertWrapper = styled.div`
   padding: 10px 0px;
 `
-
 const Text = styled.p`
   font-size: 13px;
   color: rgb(240, 63, 64);

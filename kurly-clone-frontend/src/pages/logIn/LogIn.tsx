@@ -1,59 +1,24 @@
 import styled from 'styled-components'
-import axios from 'axios'
-import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { login }  from '../../redux/features/userSlice'
+import { login } from '../../api/auth'
+import { useMutation } from '@tanstack/react-query'
 
-
-type propsType = {
+type InputValue = {
   memberId: string;
   password: string;
 }
 
-export default function LogIn({ memberId, password }: propsType) {
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
- 
-  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+export default function LogIn({ memberId, password }: InputValue) {
+  const loginMutate = useMutation(login, {
+    onSuccess: ({ data }) => { console.log(data); },
+    onError: ({ data }) => { console.log(data); },
+  })
+  
+  const handleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
-    try {
-      await axios
-        .post(
-          'http://localhost:8080/api/auth/signin',
-          {
-            memberId: memberId,
-            password: password,
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            if (res.data.status === 1) {
-              dispatch((login(res.data)));
-              navigate('../');
-            } else {
-              window.alert(res.data.message);
-            }
-            
-        }})
-      } catch (error) {
-        console.log(error);
-      }
+    loginMutate.mutate({ memberId, password });
   }
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   dispatch(loginAction(
-  //     {memberId: memberId, password: password}
-  //   ))
-  // }
-
-
   return (
-    <LogInButton onClick={handleLogin}>
+    <LogInButton onClick={ handleLogin }>
       <Span>로그인</Span>
     </LogInButton>
   )
@@ -71,7 +36,6 @@ const LogInButton = styled.button`
   background-color: rgb(95, 0, 128);
   border: 0px none;
 `
-
 const Span = styled.span`
   display: inline-block;
   font-size: 16px;

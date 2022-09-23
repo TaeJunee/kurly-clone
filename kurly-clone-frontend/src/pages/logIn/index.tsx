@@ -1,18 +1,13 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
 import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
-import LogIn from './LogIn'
-import InputHandler from './inputHandler'
+import LogIn from './Login'
 
 function LogInPage() {
-  const {
-    memberId,
-    password,
-    onChangeMemberId,
-    onChangePassword,
-  } = InputHandler();
-
+  const [memberId, setMemberId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
   return (
     <>
@@ -29,7 +24,7 @@ function LogInPage() {
                     placeholder="아이디를 입력해주세요"
                     type="text"
                     value={memberId}
-                    onChange={onChangeMemberId} />
+                    onChange={ (e) => setMemberId(e.target.value) } />
                 </InnerWrapper>
               </IdWrapper>
               <PwWrapper>
@@ -40,7 +35,7 @@ function LogInPage() {
                     type="password"
                     autoComplete='off'
                     value={password}
-                    onChange={onChangePassword} />
+                    onChange={ (e) => setPassword(e.target.value) } />
                 </InnerWrapper>
               </PwWrapper>
             </InputWrap>
@@ -50,9 +45,7 @@ function LogInPage() {
               <Find>비밀번호 찾기</Find>
             </FindWrap>
             <ButtonWrap>
-              <LogIn
-                memberId={memberId}
-                password={password} />
+              <LogIn memberId={ memberId } password={ password } />
               <SignUpButton onClick={() => navigate('/signup')}>
                 <Span>회원가입</Span>
               </SignUpButton>
@@ -73,34 +66,28 @@ const Wrapper = styled.div`
   margin-bottom: 60px;
   background-color: rgb(255, 255, 255);
 `
-
 const LogInText = styled.div`
   font-weight: 800;
   font-size: 20px;
   line-height: 20px;
   text-align: center;
 `
-
 const LogInArea = styled.div`
   width: 340px;
   margin: 0px auto;
   letter-spacing: -0.6px;
 `
-
 const InputWrap = styled.div`
   margin-top: 30px;
 `
-
 const IdWrapper = styled.div`
   margin-bottom: 5px;
   padding-bottom: 12px;
 `
-
 const InnerWrapper = styled.div`
   position: relative;
   height: 48px;
 `
-
 const Input = styled.input`
   width: 100%;
   height: 54px;
@@ -114,35 +101,29 @@ const Input = styled.input`
   outline: none;
   box-sizing: border-box;
 `
-
 const PwWrapper = styled.div`
   padding-bottom: 12px;
 `
-
 const FindWrap = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
   font-size: 13px;
 `
-
 const Find = styled.a`
   color: rgb(51, 51, 51);
   cursor: pointer;
 `
-
 const Bar = styled.span`
   width: 1px;
   height: 10px;
   margin: 3px 6px 0px;
   background-color: rgb(51, 51, 51);
 `
-
 const ButtonWrap = styled.div`
   margin-top: 28px;
   box-sizing: border-box;
 `
-
 const SignUpButton = styled.button`
   display: block;
   padding: 0px 10px;
@@ -155,9 +136,7 @@ const SignUpButton = styled.button`
   color: rgb(95, 0, 128);
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(95, 0, 128);
-}
 `
-
 const Span = styled.span`
   display: inline-block;
   font-size: 16px;

@@ -1,36 +1,58 @@
 import styled from 'styled-components'
-import { propsType } from './propsType';
+import { InnerWrapper } from './Address1';
+import { InputWrap, InputWrapper, LabelText, LeftWrapper, MiddleWrapper, RightWrapper } from './commonStyle'
+import { useDispatch, useSelector } from 'react-redux'
+import { setBirthYear, setBirthMonth, setBirthDay } from '../../../features/auth/signupSlice'
 
-export default function Email({ onChangeBirthYear, onChangeBirthMonth, onChangeBirthDay }: propsType) {
+type Birth = {
+  name: string;
+  placeholder: string;
+  value: string;
+  maxLength: number;
+  onChange: any;
+}
 
-  type Birth = {
-    name: string;
-    placeholder: string;
-    maxLength: number;
-    onChange: any;
+export default function Email() {
+  const birthYear = useSelector((state: any) => state.signup.birthYear);
+  const birthMonth = useSelector((state: any) => state.signup.birthMonth);
+  const birthDay = useSelector((state: any) => state.signup.birthDay);
+  const dispatch = useDispatch();
+
+  const onChangeBirthYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setBirthYear(e.target.value));
+  }
+
+  const onChangeBirthMonth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setBirthMonth(e.target.value));
+  }
+
+  const onChangeBirthDay = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setBirthDay(e.target.value));
   }
   
   const birthType: Birth[] = [
     {
       name: "birthYear",
       placeholder: "YYYY",
+      value: birthYear,
       maxLength: 4,
       onChange: onChangeBirthYear,
     },
     {
       name: "birthMonth",
       placeholder: "MM",
+      value: birthMonth,
       maxLength: 2,
       onChange: onChangeBirthMonth,
     },
     {
       name: "birthDay",
       placeholder: "DD",
+      value: birthDay,
       maxLength: 2,
       onChange: onChangeBirthDay,
     },
   ]
-  
   return (
     <InputWrapper>
       <LeftWrapper>
@@ -48,6 +70,7 @@ export default function Email({ onChangeBirthYear, onChangeBirthMonth, onChangeB
                   name={item.name}
                   placeholder={item.placeholder}
                   type="text"
+                  value={item.value}
                   maxLength={item.maxLength}
                   onChange={item.onChange} />
               </InnerWrapper>
@@ -63,37 +86,6 @@ export default function Email({ onChangeBirthYear, onChangeBirthMonth, onChangeB
   )
 }
 
-const InputWrapper = styled.div`
-  display: inline-flex;
-  width: 100%;
-  padding: 10px 20px;
-`
-
-const LeftWrapper = styled.div`
-  width: 139px;
-  padding-top: 12px;
-`
-
-const MiddleWrapper = styled.div`
-  flex: 1 1 0%;
-`
-
-const RightWrapper = styled.div`
-  width: 120px;
-  margin-left: 8px;
-  `
-
-  const LabelText = styled.label`
-  font-weight: 500;
-  color: rgb(51, 51, 51);
-  line-height: 20px;
-`
-
-const InputWrap = styled.div`
-  position: relative;
-  padding-bottom: 0px;
-`
-
 const BirthContainer = styled.div`
   height: 44px;
   display: flex;
@@ -104,7 +96,6 @@ const BirthContainer = styled.div`
   border-radius: 3px;
   padding: 0px 15px;
 `
-
 const Wrapper = styled.div`
   padding-bottom: 0px;
   input {
@@ -113,12 +104,6 @@ const Wrapper = styled.div`
     border: none;
   }
 `
-
-const InnerWrapper = styled.div`
-  posiiton: relative;
-  height: 40px;
-`
-
 const BirthInput = styled.input`
   width: 100%;
   height: 40px;
@@ -132,7 +117,6 @@ const BirthInput = styled.input`
   outline: none;
   box-sizing: border-box;
 `
-
 const Slash = styled.span`
   height: 100%;
   &::after {

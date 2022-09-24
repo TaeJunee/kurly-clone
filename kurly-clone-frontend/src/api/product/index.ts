@@ -24,14 +24,4 @@ const getCategoryProduct = async (query: any) => {
   }
 }
 
-const getSubCategoryProduct = async () => {
-  try {
-    const { data } = await axios.get(`${BASE_URL}/category-list`,
-    { params: { category: '채소', subCategory: '친환경' }})
-    return data;
-  } catch (e: any) {
-    throw Error(e);
-  }
-}
-
-export { getProduct, getCategoryProduct, getSubCategoryProduct }
+export { getProduct, getCategoryProduct }

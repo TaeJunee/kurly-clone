@@ -19,7 +19,7 @@ export const categoryList: CategoryType[] = [
     img: "https://collection-image.kurly.com/site-category-groups/2/DNXCcUaXoXakDOdHiGhIMCNUeUjJioG9EyeQ7RRX.png",
     hoverImg : "https://collection-image.kurly.com/site-category-groups/2/EO7bBGPrhrByqlpJYMuIFOLWo0IiOMkgMYar4Tjv.png",
     text: "과일·견과·쌀",
-    subMenu: [{text: "친환경"}, {text: "제절과일"}, {text: "국산과일"}, {text: "수입과일"}, {text: "간편과일"}, {text: "냉동·건과일"}, {text: "견과류"}, {text: "쌀·잡곡"}],
+    subMenu: [{text: "친환경"}, {text: "제철과일"}, {text: "국산과일"}, {text: "수입과일"}, {text: "간편과일"}, {text: "냉동·건과일"}, {text: "견과류"}, {text: "쌀·잡곡"}],
   },
   {
     id: "3",

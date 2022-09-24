@@ -2,7 +2,7 @@ import {useRef} from 'react'
 import styled from 'styled-components'
 import {Navigation} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Product from './Product'
+import MainProduct from './MainProduct'
 import { ProductInformation } from '../fakeRepo/salesProducts/salesProducts'
 
 type Props = {
@@ -26,7 +26,7 @@ export default function ProductSwiper({ items }: Props) {
     >
       {items.map((item, index) => (
         <SwiperSlide>
-          <Product key={index} item={item} />
+          <MainProduct key={index} item={item} />
         </SwiperSlide>
       ))}
     </StyledSwiper>

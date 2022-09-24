@@ -5,7 +5,7 @@ type Props = {
   item: ProductInformation,
 }
 
-export default function Product({ item }: Props) {
+export default function MainProduct({ item }: Props) {
   return (
     <ProductWrapper>
       <ImageWrapper>

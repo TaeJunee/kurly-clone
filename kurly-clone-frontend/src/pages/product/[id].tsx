@@ -1,51 +1,54 @@
 import styled from "styled-components"
-import GlobalFooter from "../../components/common/globalFooter/GlobalFooter"
-import GlobalHeader from "../../components/common/globalHeader/GlobalHeader"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { getProduct } from "../../api/product"
 
 export default function GoodsPage() {
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery(['goods', id], getProduct)
+  const { data, isLoading, error } = useQuery([id], getProduct)
   
   if (isLoading) { return <span>Loading...</span> }
-  if (error instanceof Error) { return <span>Error: {error.message}</span>}
+  if (error instanceof Error) { return <span>Error: {error.message}</span> }
   return (
-    <>
-    <GlobalHeader />
     <Wrapper>
-    <Wrap>
-      <ProductAtf id="product-atf">
-        <ProductImg background={data.thumbnail}/>
-        <ProductInfoContainer>
-          <ProductNameContainer>
-            <Delivery></Delivery>
-            <ProductNameWrapper>
-              <ProductName>{data.name}</ProductName>
-              <ShareButton />
-            </ProductNameWrapper>
-            <ProductSubName>{data.description}</ProductSubName>
-          </ProductNameContainer>
-          <PriceWrapper>
-            <Price>{data.price.toLocaleString()}</Price>
-            <Won>원</Won>
-          </PriceWrapper>
-          <Membership>로그인 후, 적립 혜택이 제공됩니다.</Membership>
-        <ProductNoticeContainer>
-          {Object.entries(JSON.parse(data.info)).map((item: any) => {
-            return (
-              <ProductNoticeRow>
-                <dt>{item[0]}</dt>
-                <dd>{item[1].slice(2, 4) === '배송'
+      <Wrap>
+        <ProductAtf id="product-atf">
+          <ProductImg background={data.thumbnail}/>
+          <ProductInfoContainer>
+            <ProductNameContainer>
+              <Delivery></Delivery>
+              <ProductNameWrapper>
+                <ProductName>{data.name}</ProductName>
+                <ShareButton />
+              </ProductNameWrapper>
+              <ProductSubName>{data.description}</ProductSubName>
+            </ProductNameContainer>
+            <PriceWrapper>
+              { data.discount
+                ? <><DiscountRate>{Math.floor(data.discount * 100)}%</DiscountRate>
+                  <Price>{(Math.round(data.price * (1 - data.discount) / 10) * 10).toLocaleString()}</Price>
+                  <Won>원</Won></>
+                : <><Price>{data.price.toLocaleString()}</Price><Won>원</Won></> }
+            </PriceWrapper>
+            { data.discount
+                && <div style={{ paddingTop: "9px" }}>
+                    <DimmedPrice>{data.price.toLocaleString()}원</DimmedPrice>
+                  </div> }  
+            <Membership>로그인 후, 적립 혜택이 제공됩니다.</Membership>
+          <ProductNoticeContainer>
+            {Object.entries(JSON.parse(data.info)).map((item: any) => {
+              return (
+                <ProductNoticeRow>
+                  <dt>{item[0]}</dt>
+                  <dd>{item[1].slice(2, 4) === '배송'
                   ? <><p>{item[1].slice(0, 4)}</p><p>{item[1].slice(4, item[1].length)}</p></>
                   : item[1]}</dd>
-              </ProductNoticeRow>
-            )})}
-        </ProductNoticeContainer>
-        </ProductInfoContainer>
-      </ProductAtf>
-      <NavContainer>
+                </ProductNoticeRow>
+              )})}
+            </ProductNoticeContainer>
+          </ProductInfoContainer>
+        </ProductAtf>
+        <NavContainer>
           <NavWrapper>
             <NavItems>
               <NavLink><NavText>상품설명</NavText></NavLink>
@@ -64,18 +67,16 @@ export default function GoodsPage() {
         <ProductDetailContainer>
           <ProductDetails id='description'>
             <div className='goods-wrap'>
-            {data.imgMain.slice(1, -1).replace(/\'/gi, "").split(',').map((item: string) => {
-              return <div className='pic'><img src={item.trim()} /></div>
-            })}</div>
-            </ProductDetails>
+              {data.imgMain.slice(1, -1).replace(/\'/gi, "").split(',').map((item: string) => {
+                return <div className='pic'><img src={item.trim()} /></div>
+              })}</div>
+          </ProductDetails>
           <ProductDetails id='detail'></ProductDetails>
           <ProductDetails id='review'></ProductDetails>
           <ProductDetails id='inquiry'></ProductDetails>
         </ProductDetailContainer>
-    </Wrap>
+      </Wrap>
     </Wrapper>
-    <GlobalFooter />
-    </>
   )
 }
 
@@ -147,6 +148,11 @@ const PriceWrapper = styled.div`
   line-height: 30px;
   letter-spacing: -0.5px;
 `
+const DiscountRate = styled.span`
+  padding-right: 9px;
+  font-size: 28px;
+  color: rgb(250, 98, 47);
+`
 const Price = styled.span`
   padding-right: 4px;
   font-size: 28px;
@@ -159,6 +165,13 @@ const Won = styled.span`
   font-size: 18px;
   color: rgb(51, 51, 51);
   vertical-align: top;
+`
+const DimmedPrice = styled.span`
+  font-size: 16px;
+  color: rgb(181, 181, 181);
+  text-decoration: line-through;
+  margin-right: 0px;
+  letter-spacing: -0.5px;
 `
 const Membership = styled.div`
   font-size: 14px;

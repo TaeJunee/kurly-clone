@@ -6,16 +6,11 @@ import { salesProductsList } from '../../components/fakeRepo/salesProducts/sales
 
 function MainPage() {
   return (
-    <>
-      <GlobalHeader />
-      <div>
-        <Swipers />
-        <ProductType items={salesProductsList.recommend} title={"이 상품 어때요?"} />
-        <ProductType items={salesProductsList.bargain} title={"놓치면 후회할 가격"} />
-      </div>
-      <GlobalFooter />
-    </>
-    
+    <div>
+      <Swipers />
+      <ProductType items={salesProductsList.recommend} title={"이 상품 어때요?"} />
+      <ProductType items={salesProductsList.bargain} title={"놓치면 후회할 가격"} />
+    </div> 
   )
 }
 

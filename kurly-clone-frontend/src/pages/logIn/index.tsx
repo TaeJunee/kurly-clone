@@ -5,60 +5,56 @@ import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
 import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
 import LogIn from './Login'
 
-function LogInPage() {
+function LoginPage() {
   const [memberId, setMemberId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
   return (
-    <>
-      <GlobalHeader />
-      <Wrapper>
-        <LogInText>로그인</LogInText>
-        <LogInArea>
-          <form style={{ display: "block" }}>
-            <InputWrap>
-              <IdWrapper>
-                <InnerWrapper>
-                  <Input
-                    name="email"
-                    placeholder="아이디를 입력해주세요"
-                    type="text"
-                    value={memberId}
-                    onChange={ (e) => setMemberId(e.target.value) } />
-                </InnerWrapper>
-              </IdWrapper>
-              <PwWrapper>
-                <InnerWrapper>
-                  <Input
-                    name="passsword"
-                    placeholder="비밀번호를 입력해주세요"
-                    type="password"
-                    autoComplete='off'
-                    value={password}
-                    onChange={ (e) => setPassword(e.target.value) } />
-                </InnerWrapper>
-              </PwWrapper>
-            </InputWrap>
-            <FindWrap>
-              <Find>아이디 찾기</Find>
-              <Bar />
-              <Find>비밀번호 찾기</Find>
-            </FindWrap>
-            <ButtonWrap>
-              <LogIn memberId={ memberId } password={ password } />
-              <SignUpButton onClick={() => navigate('/signup')}>
-                <Span>회원가입</Span>
-              </SignUpButton>
-            </ButtonWrap>
-          </form>
-        </LogInArea>
-      </Wrapper>
-      <GlobalFooter />
-    </>
+    <Wrapper>
+      <LogInText>로그인</LogInText>
+      <LogInArea>
+        <form style={{ display: "block" }}>
+          <InputWrap>
+            <IdWrapper>
+              <InnerWrapper>
+                <Input
+                  name="email"
+                  placeholder="아이디를 입력해주세요"
+                  type="text"
+                  value={memberId}
+                  onChange={ (e) => setMemberId(e.target.value) } />
+              </InnerWrapper>
+            </IdWrapper>
+            <PwWrapper>
+              <InnerWrapper>
+                <Input
+                  name="passsword"
+                  placeholder="비밀번호를 입력해주세요"
+                  type="password"
+                  autoComplete='off'
+                  value={password}
+                  onChange={ (e) => setPassword(e.target.value) } />
+              </InnerWrapper>
+            </PwWrapper>
+          </InputWrap>
+          <FindWrap>
+            <Find>아이디 찾기</Find>
+            <Bar />
+            <Find>비밀번호 찾기</Find>
+          </FindWrap>
+          <ButtonWrap>
+            <LogIn memberId={ memberId } password={ password } />
+            <SignUpButton onClick={() => navigate('/signup')}>
+              <Span>회원가입</Span>
+            </SignUpButton>
+          </ButtonWrap>
+        </form>
+      </LogInArea>
+    </Wrapper>
   )
 }
 
-export default LogInPage
+export default LoginPage
 
 const Wrapper = styled.div`
   min-width: 1050px;

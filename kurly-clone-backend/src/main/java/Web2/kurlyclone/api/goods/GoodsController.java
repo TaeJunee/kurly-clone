@@ -10,18 +10,18 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/goods")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class GoodsController {
 
     private final GoodsService goodsService;
     private final GoodsRepo goodsRepo;
 
-    @GetMapping("/{id}")
+    @GetMapping("/goods/{id}")
     public Goods goodsDetailPage(@PathVariable("id") Long oid) {
         return goodsService.findOne(oid);
     }
-    @GetMapping("/category-list")
+    @GetMapping("/goods-list")
     public List<Goods> goodsCategory(
             @RequestParam(value = "category", required = false) String category,
             @RequestParam(value = "subCategory", required = false) String subCategory

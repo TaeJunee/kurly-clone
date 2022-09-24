@@ -1,5 +1,5 @@
 export { default as Main } from './main'
 export { default as Login } from './login'
 export { default as Signup } from './signup'
-export { default as GoodsDetail } from './product/[id]'
+export { default as GoodsDetail } from './goods/[id]'
 export { default as GoodsList } from './goodsList'

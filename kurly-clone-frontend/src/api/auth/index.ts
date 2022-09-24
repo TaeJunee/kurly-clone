@@ -67,9 +67,7 @@ const login = async({ memberId, password }: LoginData) => {
 }
 const requestVerify = async (to: string) => {
   try {
-    const { data } = await axios.post(`${BASE_URL}/auth/sms/send`,{
-      to
-    })
+    const { data } = await axios.post(`${BASE_URL}/auth/sms/send`, { to })
     return data;
   } catch (e: any) {
     throw Error(e);

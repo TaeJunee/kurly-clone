@@ -1,19 +1,23 @@
 import { useState } from 'react'
 import Timer from '../Timer';
-import { isTimeover } from '../../../features/timer/timerSlice';
+import { isTimeover, timeout } from '../../../features/timer/timerSlice';
 import { useSelector } from 'react-redux'
 import { useMutation } from '@tanstack/react-query'
 import { Button, InputField, InputWrap, InputWrapper, LeftWrapper, MiddleWrapper, RightWrapper } from './commonStyle';
 import { verifyPhone } from '../../../api/auth'
+import { useDispatch } from 'react-redux';
 
 export default function VerifyPhone() {
+  const dispatch = useDispatch();
   const isTimeout = useSelector(isTimeover);
   const phone = useSelector((state: any) => state.signup.phone);
   const [code, setCode] = useState<string>('');
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const sendMutation = useMutation(verifyPhone, {
-    onSuccess: (data) => console.log(data),
+    onSuccess: (data) => {
+      dispatch(timeout());
+      window.alert(data.payload); },
     onError: (data) => console.log(data)
   })
   

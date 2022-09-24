@@ -2,7 +2,7 @@ import {useRef} from 'react'
 import styled from 'styled-components'
 import {Navigation} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import MainProduct from './MainProduct'
+import MainProduct from './MainPageGoods'
 import { ProductInformation } from '../fakeRepo/salesProducts/salesProducts'
 
 type Props = {

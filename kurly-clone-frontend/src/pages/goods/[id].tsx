@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import { getProduct } from "../../api/product"
+import { getGoods } from "../../api/goods"
 
-export default function GoodsPage() {
+export default function GoodsDetailPage() {
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery([id], getProduct)
+  const { data, isLoading, error } = useQuery([id], getGoods)
   
   if (isLoading) { return <span>Loading...</span> }
   if (error instanceof Error) { return <span>Error: {error.message}</span> }
@@ -98,7 +98,7 @@ const ProductAtf = styled.article`
 const ProductImg = styled.div<{ background: string }>`
   width: 430px;
   height: 552px;
-  background: url(${({ background }) => background}) 0% 0% / cover, url(https://res.kurly.com/_next/static/images/noimg-150x195-2c819ff….svg) 50% 50% / contain no-repeat rgb(245, 245, 245);
+  background: url(${({ background }) => background}) 0% 0% / cover, url(	https://res.kurly.com/_next/static/images/noimg-150x195-2c819ff85dca3193dfce31add0852dbb.svg) 50% 50% / contain no-repeat rgb(245, 245, 245);
 `
 const ProductInfoContainer = styled.div`
   width: 560px;

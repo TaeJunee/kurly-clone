@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query"
 import qs from "qs"
-import { getCategoryProduct } from "../../api/product"
+import { getCategoryGoods } from "../../api/goods"
 import { categoryList } from '../../components/common/globalHeader/category/categoryList'
-import CategoryProduct from "../../components/product/CategoryProduct";
+import CategoryGoods from "../../components/goods/CategoryGoods";
 import { useNavigate } from "react-router-dom";
 
 interface Location {
@@ -36,10 +36,10 @@ function selector(data: DataType) {
   return;
 }
 
-export default function GoodsList({ location }: Location) {
+export default function GoodsListPage({ location }: Location) {
   const navigate = useNavigate();
   const query = qs.parse(location.search, { ignoreQueryPrefix: true })
-  const { data, isLoading, error } = useQuery([query], getCategoryProduct);
+  const { data, isLoading, error } = useQuery([query], getCategoryGoods);
 
   if (isLoading) { return <span>Loading...</span> }
   if (error instanceof Error) { return <span>Error: {error.message}</span> }
@@ -65,7 +65,7 @@ export default function GoodsList({ location }: Location) {
       </Sort>
       <GoodsContainer>
         {data.map((item: DataType) => {
-          return <CategoryProduct 
+          return <CategoryGoods 
             name={item.name}
             description={item.description}
             thumbnail={item.thumbnail}

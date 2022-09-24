@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { DataType } from "../../pages/goodsList"
 
-export default function CategoryProduct({ name, description, thumbnail, price, oid, discount }: DataType) {
+export default function CategoryGoods({ name, description, thumbnail, price, oid, discount }: DataType) {
   const navigate = useNavigate();
   return (
     <Container onClick={() => navigate(`/goods/${oid}`)}>

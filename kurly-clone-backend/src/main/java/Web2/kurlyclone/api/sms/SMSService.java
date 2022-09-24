@@ -1,8 +1,7 @@
 package Web2.kurlyclone.api.sms;
 
 
-import Web2.kurlyclone.RandomNumUtil;
-import Web2.kurlyclone.api.auth.AuthDto;
+import Web2.kurlyclone.util.RandomNumUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;

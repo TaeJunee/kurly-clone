@@ -13,8 +13,8 @@ export default function MemberId() {
   const dispatch = useDispatch();
   
   const idCheckMutation = useMutation(idDuplicationCheck, {
-    onSuccess: (data) => console.log(data.payload),
-    onError: (data) => console.log(data)
+    onSuccess: (data) => window.alert(data.payload),
+    onError: (data) => window.alert(data)
   });
   
   const idCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {

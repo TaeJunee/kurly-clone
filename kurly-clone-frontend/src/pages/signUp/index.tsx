@@ -1,13 +1,9 @@
 import styled from 'styled-components'
-import GlobalHeader from '../../components/common/globalHeader/GlobalHeader'
-import GlobalFooter from '../../components/common/globalFooter/GlobalFooter'
 import Form from '../../components/signup/Form'
-import SignUp from './Signup'
+import Signup from './Signup'
 
-export default function SignUpPage() {
+export default function SignupPage() {
   return (
-    <>
-    <GlobalHeader/>
     <MainWrapper>
       <SignUpText>회원가입</SignUpText>
       <SignUpWrapper>
@@ -17,12 +13,10 @@ export default function SignUpPage() {
         <Form />
         <BottomBorder/>
         <SignUpBtnWrapper>
-          <SignUp />
+          <Signup />
         </SignUpBtnWrapper>
       </SignUpWrapper>
     </MainWrapper>
-    <GlobalFooter/>
-    </>
   )
 }
 

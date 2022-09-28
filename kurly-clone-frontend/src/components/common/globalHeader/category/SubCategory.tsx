@@ -1,33 +1,28 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { setSubCategory, unsetSubCategory } from '../../../../features/category/subCategorySlice';
 
 type PropsType = {
-  subMenus: {text: string}[]
+  category: string;
+  text: string;
 }
 
-export default function SubCategory({ subMenus }: PropsType) {
+export default function SubCategory({ category, text }: PropsType) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
-    <SubCategoryList>
-      {subMenus.map((item, index: number) => (
-        <SubCategoryItem key={index}>
+        <SubCategoryItem 
+          onClick={() => navigate(`product/list?category=${category}&subCategory=${text}`)}
+          onMouseEnter={() => dispatch(setSubCategory(text))}
+          onMouseLeave={() => dispatch(unsetSubCategory())}>
           <ItemTextWrapper>
-            <ItemText>{item.text}</ItemText>
+            <ItemText>{text}</ItemText>
           </ItemTextWrapper>
         </SubCategoryItem>
-      ))}
-    </SubCategoryList>
   )
 }
-
-const SubCategoryList = styled.ul`
-  width: 266px;
-  height: 100%;
-  position: absolute;
-  overflow-y: auto;
-  top: -1px;
-  left: 249px;
-  z-index: 20;
-  animation: 0.5s linear 0s 1 normal none;
-`
 
 const SubCategoryItem = styled.li`
   cursor: pointer;

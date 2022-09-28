@@ -2,48 +2,43 @@ const calc =  (price: number, rate: number) => (
   Math.round(price * (1 - rate / 100) / 10)  * 10)
 
 export type ProductInformation = {
-      img: string,
-      text: string,
-      price: number,
-      rate: number,
-      saledPrice: Function,
-    }
+  img: string,
+  text: string,
+  price: number,
+  rate: number,
+  saledPrice: Function,
+}
 export type ProductTypes = {
   recommend: ProductInformation[],
   bargain: ProductInformation[],
 }
 
-export const salesProductsList: ProductTypes = 
-  {
-    recommend: [
-      {
-        img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653036825212l0.jpeg",
-        text: "[Kurly's] 동물복지 유정란 20구",
-        price: 9550,
-        rate: 0,
-        saledPrice: function() {return calc(this.price, this.rate)},
-      },
-      {
-        img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1655279206678l0.jpg",
-        text: "[스키니피그] 그릭요거트&딸기 아이스크림 474ml",
-        price: 7900,
-        rate: 20,
-        saledPrice: function() {return calc(this.price, this.rate)},
-      },
-      {
-        img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1597131720997l0.jpg",
-        text: "히말라야 핑크소금 구운피스타치오 300g",
-        price: 9900,
-        rate: 10,
-        saledPrice: function() {return calc(this.price, this.rate)},
-      },
-      {
-        img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1652256333251l0.jpg",
-        text: "[설치배송][LG전자] 유러피안 슬림 디자인 모던엣지 냉장고 M451MC93 (462L/맨해튼 미드나잇/상냉장 하냉동)",
-        price: 1904440,
-        rate: 38,
-        saledPrice: function() {return calc(this.price, this.rate)},
-      },
+export const salesProductsList: ProductTypes = {
+  recommend: [{
+    img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653036825212l0.jpeg",
+    text: "[Kurly's] 동물복지 유정란 20구",
+    price: 9550,
+    rate: 0,
+    saledPrice: function() {return calc(this.price, this.rate)},
+  }, {
+    img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1655279206678l0.jpg",
+    text: "[스키니피그] 그릭요거트&딸기 아이스크림 474ml",
+    price: 7900,
+    rate: 20,
+    saledPrice: function() {return calc(this.price, this.rate)},
+  }, {
+    img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1597131720997l0.jpg",
+    text: "히말라야 핑크소금 구운피스타치오 300g",
+    price: 9900,
+    rate: 10,
+    saledPrice: function() {return calc(this.price, this.rate)},
+  }, {
+    img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1652256333251l0.jpg",
+    text: "[설치배송][LG전자] 유러피안 슬림 디자인 모던엣지 냉장고 M451MC93 (462L/맨해튼 미드나잇/상냉장 하냉동)",
+    price: 1904440,
+    rate: 38,
+    saledPrice: function() {return calc(this.price, this.rate)},
+  },
       {
         img: "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1650546835592l0.jpg",
         text: "[제니튼] 닥터제니 1450 고불소 주니어치약 60g",

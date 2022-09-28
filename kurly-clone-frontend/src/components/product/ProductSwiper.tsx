@@ -2,13 +2,14 @@ import {useRef} from 'react'
 import styled from 'styled-components'
 import {Navigation} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Product from './Product'
-import { ProductInformation } from '../fakeRepo/salesProducts/salesProducts'
+import MainPageProduct from './MainPageProduct'
+import { DataType } from '../../pages/productList'
 
-type Props = {
-  items: ProductInformation[],
+interface PropsType {
+  data: DataType[];
 }
-export default function ProductSwiper({ items }: Props) {
+
+export default function ProductSwiper({ data }: PropsType) {
 
   const _prevBtn = useRef(null);
   const _nextBtn = useRef(null);
@@ -17,18 +18,26 @@ export default function ProductSwiper({ items }: Props) {
     <>
     <StyledSwiper
       slidesPerView={4}
+      slidesPerGroup={4}
       spaceBetween={10}
       navigation={{
         nextEl: _nextBtn.current,
         prevEl: _prevBtn.current
       }}
-      modules={[Navigation]}
-    >
-      {items.map((item, index) => (
-        <SwiperSlide>
-          <Product key={index} item={item} />
-        </SwiperSlide>
-      ))}
+      modules={[Navigation]}>
+      {data && data.length > 0
+      ? data.map((item: DataType) => (
+          <SwiperSlide>
+            <MainPageProduct
+              key={item.idf_product}
+              name={item.name}
+              thumbnail={item.thumbnail}
+              price={item.price}
+              discount={item.discount}
+              idf_product={item.idf_product} />
+          </SwiperSlide>))
+      : <OnError><span>데이터가 없습니다.</span></OnError>
+    }
     </StyledSwiper>
     <PrevButton ref={_prevBtn}/>
     <NextButton ref={_nextBtn}/>
@@ -40,7 +49,6 @@ export default function ProductSwiper({ items }: Props) {
 const StyledSwiper = styled(Swiper)`
   margin-left: -9px;
 `
-
 const PrevButton = styled.button`
   position: absolute;
   z-index: 100;
@@ -54,7 +62,6 @@ const PrevButton = styled.button`
   left: 0px;
   transform: translate(-50%, -50%);
 `
-
 const NextButton = styled.button`
   position: absolute;
   z-index: 100;
@@ -67,4 +74,16 @@ const NextButton = styled.button`
   top: calc(50% - 50px);
   right: 0px;
   transform: translate(50%, -50%) rotate(180deg);
+`
+const OnError = styled.div`
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 32px;
+  span { 
+    display: inline-block;
+    margin-top: 135px;
+    font-weight: 500;
+  }
 `

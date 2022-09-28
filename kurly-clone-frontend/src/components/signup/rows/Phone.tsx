@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setPhone } from '../../../features/auth/signupSlice'
 import { useMutation } from '@tanstack/react-query'
 import { verifyPhone } from '../../../api/auth'
+import { requestVerify } from '../../../api/auth'
 
 export default function Phone() {
   const { phoneErr, isActive } = ValidationCheck();
@@ -15,7 +16,7 @@ export default function Phone() {
   const phone = useSelector((state: any) => state.signup.phone);
   const dispatch = useDispatch();
   
-  const sendSMSMutation = useMutation(verifyPhone, {
+  const sendSMSMutation = useMutation(requestVerify, {
     onSuccess: (data) => {
       console.log(data);
       dispatch(startCount());
@@ -49,7 +50,7 @@ export default function Phone() {
         { phoneErr && <Alert message={ERROR_MESSAGE}/>}
       </MiddleWrapper>
       <RightWrapper>
-      <Button type="button" disabled={!isActive || !isTimeout} onClick={handleOnClick}>
+      <Button type="button" disabled={!isTimeout} onClick={handleOnClick}>
         <span>인증번호 받기</span>
       </Button>
       </RightWrapper>

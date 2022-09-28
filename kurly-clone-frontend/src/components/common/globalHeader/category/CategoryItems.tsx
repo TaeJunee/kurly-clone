@@ -6,6 +6,8 @@ import { subMenuUp } from '../../../../features/category/categorySlice'
 import { subMenuDown } from '../../../../features/category/categorySlice'
 import { currentCategory } from '../../../../features/category/categorySlice'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { currentSubCategory } from '../../../../features/category/subCategorySlice'
 
 type PropsType = {
   items: CategoryType;
@@ -13,9 +15,10 @@ type PropsType = {
 }
 
 export default function CategoryItems({ items, isWide }: PropsType) {
-
   const categoryName = useSelector(currentCategory);
+  const subCategoryName = useSelector(currentSubCategory);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     dispatch(subMenuUp(items.text))
@@ -27,21 +30,27 @@ export default function CategoryItems({ items, isWide }: PropsType) {
   }}
 
   return (
-    <>
-      <CategoryItem
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}>
-        <Container>
-          <ItemImg
-            key={items.id}
-            src={categoryName === items.text ? items.hoverImg : items.img}
-            alt={items.text} 
-          />
-          <ItemText>{items.text}</ItemText>
-        </Container>
-        {(isWide && categoryName === items.text) && <SubCategory subMenus={items.subMenu} />}
-      </CategoryItem>
-    </>
+    <CategoryItem
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={() => {return !subCategoryName && navigate(`product/list?category=${items.text}`)}}>
+      <Container>
+        <ItemImg
+          key={items.id}
+          src={categoryName === items.text ? items.hoverImg : items.img}
+          alt={items.text} 
+        />
+        <ItemText>{items.text}</ItemText>
+      </Container>
+      {(isWide && categoryName === items.text)
+        && <SubCategoryList>
+          {items.subMenu.map((item, index) => {
+            return <SubCategory key={index} category={items.text}text={item.text}/>
+          })}
+        </SubCategoryList> }
+          
+   
+    </CategoryItem>
   )
 }
 
@@ -75,4 +84,14 @@ const ItemText = styled.span`
     font-weight: 500;
     color: rgb(95, 0, 128);
   }
+`
+const SubCategoryList = styled.ul`
+  width: 266px;
+  height: 100%;
+  position: absolute;
+  overflow-y: auto;
+  top: -1px;
+  left: 249px;
+  z-index: 20;
+  animation: 0.5s linear 0s 1 normal none;
 `

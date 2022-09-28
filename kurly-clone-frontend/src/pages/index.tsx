@@ -1,3 +1,5 @@
 export { default as Main } from './main'
-export { default as LogIn } from './login'
-export { default as SignUp } from './signup'
+export { default as Login } from './login'
+export { default as Signup } from './signup'
+export { default as ProductDetail } from './product/[id]'
+export { default as ProductList } from './productList'

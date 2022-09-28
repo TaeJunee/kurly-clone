@@ -3,7 +3,7 @@ package Web2.kurlyclone.api.goods;
 import lombok.Data;
 
 @Data
-public class GoodsDto {
+public class ProductDto {
 
     private String category;
     private String subCategory;

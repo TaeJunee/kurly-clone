@@ -7,7 +7,7 @@ type ErrorType = {
   message: string;
 }
 
-const SignUp = () => {
+const Signup = () => {
   const memberId = useSelector((state: any) => state.signup.memberId);
   const password = useSelector((state: any) => state.signup.password);
   const name = useSelector((state: any) => state.signup.name);
@@ -35,7 +35,7 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default Signup
 
 const SignUpButton = styled.button`
   display: block;

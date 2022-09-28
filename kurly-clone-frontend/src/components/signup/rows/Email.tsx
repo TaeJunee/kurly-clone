@@ -13,8 +13,8 @@ export default function Email() {
   const dispatch = useDispatch();
   
   const emailCheckMutation = useMutation(emailDuplicationCheck, {
-    onSuccess: (data) => console.log(data),
-    onError: (data) => console.log(data),
+    onSuccess: (data) => window.alert(data.payload),
+    onError: (error) => console.log(error),
   })
   
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {

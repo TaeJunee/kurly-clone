@@ -1,4 +1,4 @@
-package Web2.kurlyclone;
+package Web2.kurlyclone.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 

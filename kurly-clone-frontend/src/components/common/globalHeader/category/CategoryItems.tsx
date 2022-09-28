@@ -33,7 +33,7 @@ export default function CategoryItems({ items, isWide }: PropsType) {
     <CategoryItem
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() => {return !subCategoryName && navigate(`goods-list?category=${items.text}`)}}>
+      onClick={() => {return !subCategoryName && navigate(`product/list?category=${items.text}`)}}>
       <Container>
         <ItemImg
           key={items.id}

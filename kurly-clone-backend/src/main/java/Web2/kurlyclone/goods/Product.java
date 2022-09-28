@@ -18,12 +18,12 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Goods {
+public class Product {
 
     @Id
     @GeneratedValue
-    @Column(name = "oid")
-    private Long oid;
+    @Column(name = "idf_product")
+    private Long idf_product;
     private String category;
     private String subCategory;
     private String thumbnail;

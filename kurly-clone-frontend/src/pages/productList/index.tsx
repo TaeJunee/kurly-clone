@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query"
 import qs from "qs"
-import { getCategoryGoods } from "../../api/goods"
+import { getProductList } from "../../api/product"
 import { categoryList } from '../../components/common/globalHeader/category/categoryList'
-import CategoryGoods from "../../components/goods/CategoryGoods";
+import CategoryProduct from "../../components/product/CategoryProduct";
 import { useNavigate } from "react-router-dom";
 
 interface Location {
@@ -13,12 +13,12 @@ interface Location {
 }
 
 export interface DataType {
-    oid?: number;
+    idf_product?: number;
     category?: string;
     subCategory?: string;
     createAt?: string;
     updateAt?: string;
-    description: string;
+    description?: string;
     name: string;
     info?: string;
     price: number;
@@ -36,10 +36,10 @@ function selector(data: DataType) {
   return;
 }
 
-export default function GoodsListPage({ location }: Location) {
+export default function ProductListPage({ location }: Location) {
   const navigate = useNavigate();
   const query = qs.parse(location.search, { ignoreQueryPrefix: true })
-  const { data, isLoading, error } = useQuery([query], getCategoryGoods);
+  const { data, isLoading, error } = useQuery([query], getProductList);
 
   if (isLoading) { return <span>Loading...</span> }
   if (error instanceof Error) { return <span>Error: {error.message}</span> }
@@ -47,9 +47,9 @@ export default function GoodsListPage({ location }: Location) {
     <MainContainer id="container">
       <CategoryTitle>{selector(data[0])?.text}</CategoryTitle>
       <CategoryWrapper>
-        <CategoryList onClick={() => navigate(`/goods-list?category=${selector(data[0])?.text}`)}><a>전체보기</a></CategoryList>
+        <CategoryList onClick={() => navigate(`/product/list?category=${selector(data[0])?.text}`)}><a>전체보기</a></CategoryList>
         {selector(data[0])?.subMenu.map((item) => {
-          return <CategoryList onClick={() => navigate(`/goods-list?category=${selector(data[0])?.text}&subCategory=${item.text}`)}><a>{item.text}</a></CategoryList>
+          return <CategoryList onClick={() => navigate(`/product/list?category=${selector(data[0])?.text}&subCategory=${item.text}`)}><a>{item.text}</a></CategoryList>
         })}
       </CategoryWrapper>
       <Sort>
@@ -65,13 +65,13 @@ export default function GoodsListPage({ location }: Location) {
       </Sort>
       <GoodsContainer>
         {data.map((item: DataType) => {
-          return <CategoryGoods 
+          return <CategoryProduct 
             name={item.name}
             description={item.description}
             thumbnail={item.thumbnail}
             price={item.price}
             discount={item.discount}
-            oid={item.oid} /> })}
+            idf_product={item.idf_product} /> })}
       </GoodsContainer>
     </MainContainer>
   )

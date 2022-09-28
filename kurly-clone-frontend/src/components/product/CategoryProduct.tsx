@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import { DataType } from "../../pages/goodsList"
+import { DataType } from "../../pages/productList"
 
-export default function CategoryGoods({ name, description, thumbnail, price, oid, discount }: DataType) {
+export default function CategoryProduct({ name, description, thumbnail, price, idf_product, discount }: DataType) {
   const navigate = useNavigate();
   return (
-    <Container onClick={() => navigate(`/goods/${oid}`)}>
+    <Container onClick={() => navigate(`/product/${idf_product}`)}>
       <ImageWrapper>
         <img alt="상품 이미지" loading="lazy" src={thumbnail}/>
         <CartWrapper>

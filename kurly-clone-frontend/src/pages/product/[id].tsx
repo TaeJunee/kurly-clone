@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import { getGoods } from "../../api/goods"
+import { getProduct } from "../../api/product"
 
-export default function GoodsDetailPage() {
+export default function ProductDetailPage() {
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery([id], getGoods)
+  const { data, isLoading, error } = useQuery([id], getProduct)
   
   if (isLoading) { return <span>Loading...</span> }
   if (error instanceof Error) { return <span>Error: {error.message}</span> }

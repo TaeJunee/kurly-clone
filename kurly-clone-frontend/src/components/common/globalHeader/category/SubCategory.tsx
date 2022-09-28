@@ -14,7 +14,7 @@ export default function SubCategory({ category, text }: PropsType) {
 
   return (
         <SubCategoryItem 
-          onClick={() => navigate(`goods-list?category=${category}&subCategory=${text}`)}
+          onClick={() => navigate(`product/list?category=${category}&subCategory=${text}`)}
           onMouseEnter={() => dispatch(setSubCategory(text))}
           onMouseLeave={() => dispatch(unsetSubCategory())}>
           <ItemTextWrapper>

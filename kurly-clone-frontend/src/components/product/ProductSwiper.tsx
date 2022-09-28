@@ -2,13 +2,14 @@ import {useRef} from 'react'
 import styled from 'styled-components'
 import {Navigation} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import MainProduct from './MainPageGoods'
-import { ProductInformation } from '../fakeRepo/salesProducts/salesProducts'
+import MainPageProduct from './MainPageProduct'
+import { DataType } from '../../pages/productList'
 
-type Props = {
-  items: ProductInformation[],
+interface PropsType {
+  data: any;
 }
-export default function ProductSwiper({ items }: Props) {
+
+export default function ProductSwiper({ data }: PropsType) {
 
   const _prevBtn = useRef(null);
   const _nextBtn = useRef(null);
@@ -17,6 +18,7 @@ export default function ProductSwiper({ items }: Props) {
     <>
     <StyledSwiper
       slidesPerView={4}
+      slidesPerGroupSkip={4}
       spaceBetween={10}
       navigation={{
         nextEl: _nextBtn.current,
@@ -24,9 +26,15 @@ export default function ProductSwiper({ items }: Props) {
       }}
       modules={[Navigation]}
     >
-      {items.map((item, index) => (
+      {data.map((item: DataType, index: number) => (
         <SwiperSlide>
-          <MainProduct key={index} item={item} />
+          <MainPageProduct
+            key={index}
+            name={item.name}
+            thumbnail={item.thumbnail}
+            price={item.price}
+            discount={item.discount}
+            idf_product={item.idf_product} />
         </SwiperSlide>
       ))}
     </StyledSwiper>

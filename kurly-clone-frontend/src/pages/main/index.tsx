@@ -1,13 +1,14 @@
 import Swipers from '../../components/swiper/Swipers'
-import ProductType from '../../components/goods/ProductType'
-import { salesProductsList } from '../../components/fakeRepo/salesProducts/salesProducts';
+import RandomCollection from '../../components/mainPageSection/RandomCollection'
+import { getRandomProducts, getRandomProductsOnsale } from '../../api/product'
+
 
 function MainPage() {
   return (
     <div>
       <Swipers />
-      <ProductType items={salesProductsList.recommend} title={"이 상품 어때요?"} />
-      <ProductType items={salesProductsList.bargain} title={"놓치면 후회할 가격"} />
+      <RandomCollection title={'이 상품 어때요?'} fn={getRandomProducts} more={false} />
+      <RandomCollection title={'놓치면 후회할 가격'} fn={getRandomProductsOnsale} more={true} />
     </div> 
   )
 }

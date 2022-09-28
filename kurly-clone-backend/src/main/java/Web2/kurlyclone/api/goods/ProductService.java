@@ -32,8 +32,13 @@ public class ProductService {
 
         return productRepo.findAll();
     }
-    public List<Product> getRandomProducts(int numberOfProducts) {
-        List<Product> products = getAllProducts();
+    public List<Product> getRandomProducts(int numberOfProducts, boolean onSale, String category) {
+        List<Product> products;
+
+        if (onSale) { products = productRepo.findByDiscountNotNull(); }
+        else if (category != null) { products = productRepo.findByCategory(category); }
+        else { products = getAllProducts(); }
+
         List<Product> randomProducts = new ArrayList<>();
         List<Product> copy = new ArrayList<>(products);
 
@@ -58,16 +63,16 @@ public class ProductService {
         return randomCategorizedProducts;
     }
 
-    public List<Product> getRandomProductsOnSale(int numberOfProducts) {
-        List<Product> products = productRepo.findByDiscountNotNull();
-        List<Product> randomProducts = new ArrayList<>();
-        List<Product> copy = new ArrayList<>(products);
-
-        SecureRandom rand = new SecureRandom();
-        for (int i = 0; i < Math.min(numberOfProducts, products.size()); i++) {
-            randomProducts.add(copy.remove(rand.nextInt(copy.size())));
-        }
-
-        return randomProducts;
-    }
+//    public List<Product> getRandomProductsOnSale(int numberOfProducts) {
+//        List<Product> products = productRepo.findByDiscountNotNull();
+//        List<Product> randomProducts = new ArrayList<>();
+//        List<Product> copy = new ArrayList<>(products);
+//
+//        SecureRandom rand = new SecureRandom();
+//        for (int i = 0; i < Math.min(numberOfProducts, products.size()); i++) {
+//            randomProducts.add(copy.remove(rand.nextInt(copy.size())));
+//        }
+//
+//        return randomProducts;
+//    }
 }

@@ -6,7 +6,7 @@ import MainPageProduct from './MainPageProduct'
 import { DataType } from '../../pages/productList'
 
 interface PropsType {
-  data: any;
+  data: DataType[];
 }
 
 export default function ProductSwiper({ data }: PropsType) {
@@ -18,25 +18,26 @@ export default function ProductSwiper({ data }: PropsType) {
     <>
     <StyledSwiper
       slidesPerView={4}
-      slidesPerGroupSkip={4}
+      slidesPerGroup={4}
       spaceBetween={10}
       navigation={{
         nextEl: _nextBtn.current,
         prevEl: _prevBtn.current
       }}
-      modules={[Navigation]}
-    >
-      {data.map((item: DataType, index: number) => (
-        <SwiperSlide>
-          <MainPageProduct
-            key={index}
-            name={item.name}
-            thumbnail={item.thumbnail}
-            price={item.price}
-            discount={item.discount}
-            idf_product={item.idf_product} />
-        </SwiperSlide>
-      ))}
+      modules={[Navigation]}>
+      {data && data.length > 0
+      ? data.map((item: DataType) => (
+          <SwiperSlide>
+            <MainPageProduct
+              key={item.idf_product}
+              name={item.name}
+              thumbnail={item.thumbnail}
+              price={item.price}
+              discount={item.discount}
+              idf_product={item.idf_product} />
+          </SwiperSlide>))
+      : <OnError><span>데이터가 없습니다.</span></OnError>
+    }
     </StyledSwiper>
     <PrevButton ref={_prevBtn}/>
     <NextButton ref={_nextBtn}/>
@@ -48,7 +49,6 @@ export default function ProductSwiper({ data }: PropsType) {
 const StyledSwiper = styled(Swiper)`
   margin-left: -9px;
 `
-
 const PrevButton = styled.button`
   position: absolute;
   z-index: 100;
@@ -62,7 +62,6 @@ const PrevButton = styled.button`
   left: 0px;
   transform: translate(-50%, -50%);
 `
-
 const NextButton = styled.button`
   position: absolute;
   z-index: 100;
@@ -75,4 +74,16 @@ const NextButton = styled.button`
   top: calc(50% - 50px);
   right: 0px;
   transform: translate(50%, -50%) rotate(180deg);
+`
+const OnError = styled.div`
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 32px;
+  span { 
+    display: inline-block;
+    margin-top: 135px;
+    font-weight: 500;
+  }
 `

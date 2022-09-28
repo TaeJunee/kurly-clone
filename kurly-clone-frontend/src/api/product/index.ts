@@ -23,22 +23,23 @@ const getProductList = async (query: any) => {
   }
 }
 
-const getRandomProducts = async () => {
+const getRandomProducts = async (query: QueryFunctionContext) => {
   try {
-    const { data } = await axios.get(`${BASE_URL}/random`);
+    const { data } = await axios.get(`${BASE_URL}/random`,
+    { params: { onSale: query.queryKey[0], category: query.queryKey[1]}});
     return data;
   } catch (e: any) {
     throw Error(e);
   }
 }
 
-const getRandomProductsOnsale = async () => {
-  try {
-    const { data } = await axios.get(`${BASE_URL}/random/onsale`);
-    return data;
-  } catch (e: any) {
-    throw Error(e);
-  }
-}
+// const getRandomProductsOnsale = async () => {
+//   try {
+//     const { data } = await axios.get(`${BASE_URL}/random/onsale`);
+//     return data;
+//   } catch (e: any) {
+//     throw Error(e);
+//   }
+// }
 
-export { getProduct, getProductList, getRandomProducts, getRandomProductsOnsale }
+export { getProduct, getProductList, getRandomProducts }

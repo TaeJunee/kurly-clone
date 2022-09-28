@@ -28,12 +28,14 @@ public class ProductController {
     }
 
     @GetMapping("/random")
-    public List<Product> randomProducts() {
-        return productService.getRandomProducts(25);
+    public List<Product> randomProducts(
+            @RequestParam(value = "onSale", required = false) boolean onSale,
+            @RequestParam(value = "category", required = false) String category) {
+        return productService.getRandomProducts(25, onSale, category);
     }
 
-    @GetMapping("/random/onsale")
-    public List<Product> randomProductsOnSale() {
-        return productService.getRandomProductsOnSale(25);
-    }
+//    @GetMapping("/random/onsale")
+//    public List<Product> randomProductsOnSale() {
+//        return productService.getRandomProductsOnSale(25);
+//    }
 }

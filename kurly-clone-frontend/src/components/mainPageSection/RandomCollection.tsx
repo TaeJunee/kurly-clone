@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query"
 import styled from "styled-components"
+import { getRandomProducts } from "../../api/product";
 import ProductSwiper from "../product/ProductSwiper"
 
 interface Props {
   title: string;
   more: boolean;
-  fn: any;
+  onSale: boolean;
 }
 
-export default function TodayRecommend({ title, more, fn }: Props) {
-  const { data, isLoading, error } = useQuery([], fn);
+export default function RandomCollection({ title, more, onSale }: Props) {
+  const { data, isLoading, error } = useQuery([onSale], getRandomProducts);
+
   if (isLoading) { return <span>Loading...</span> }
   if (error instanceof Error) { return <span>Error: {error.message}</span> }
 
